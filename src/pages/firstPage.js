@@ -5,7 +5,7 @@ import { test } from '../actions/index'
 const FirstPage = (props) => {
 
 useEffect(()=>{
-    props.test()
+  props.test()
 })
 
     return(
