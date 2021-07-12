@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Register = () => {
+const ErrorPage = () => {
 
     return(
         <div>
-            Register page
+            Error page
         </div>
     )
 }
 
-export default Register
+export default ErrorPage
