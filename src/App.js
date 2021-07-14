@@ -13,8 +13,7 @@ import './assets/styles/themes/default/theme.scss';
 function App() {
   return (
     <Provider store={store}>
-    <div>
-     <h1>App</h1>
+    <div className='app'>
      <Router>
        <PersistGate persistor={persistor}>
        <Switch>

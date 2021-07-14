@@ -1,0 +1,49 @@
+.login {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  &__form {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #363945;
+    width: 400px;
+    height: 500px;
+    border-radius: 6px;
+
+    &--register {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+
+      button {
+        width: 250px;
+        height: 40px;
+        cursor: pointer;
+      }
+    }
+
+    &--inputs {
+      height: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      input {
+        width: 250px;
+        height: 30px;
+      }
+
+      button {
+        width: 250px;
+        height: 40px;
+        margin-top: 30px;
+        cursor: pointer;
+      }
+    }
+  }
+}
