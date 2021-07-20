@@ -1,55 +1,46 @@
 import React from "react";
+import { loginText } from "../data/login_slides";
 
 class Login extends React.Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-    textCount: 0  
-    }
+      textCount: 0,
+    };
   }
 
-  loginText = [
-    {
-title: 'Lorem ipsum',
-description: 'Morbi tincidunt lacus purus, sed rhoncus lorem placerat aliquam. Curabitur et sodales tortor, id malesuada nibh. Nullam porta pretium lectus, nec ornare sapien interdum posuere.'
-    },
-    {
-title: 'dolor sit amet',
-description: 'Morbi tincidunt lacus purus, sed rhoncus lorem placerat aliquam. Curabitur et sodales tortor, id malesuada nibh. Nullam porta pretium lectus, nec ornare sapien interdum posuere.'
-    },
-    {
-title: 'consectetur adipiscing',
-description: 'Morbi tincidunt lacus purus, sed rhoncus lorem placerat aliquam. Curabitur et sodales tortor, id malesuada nibh. Nullam porta pretium lectus, nec ornare sapien interdum posuere.'
-    }
-  ]
-  
-  componentDidMount(){
-    this.slideTimer = setInterval(()=>{
-      if(this.state.textCount === this.loginText.length - 1){
-        this.setState({textCount: 0})
+  componentDidMount() {
+    this.slideTimer = setInterval(() => {
+      if (this.state.textCount === loginText.length - 1) {
+        this.setState({ textCount: 0 });
       } else {
-        this.setState({textCount: this.state.textCount + 1})
+        this.setState({ textCount: this.state.textCount + 1 });
       }
-    }, 3000)
+    }, 3000);
   }
 
   render() {
     return (
       <div className="login">
         <div className="login__description">
-          <div className="login__description--title">
-            <h1>{this.loginText[this.state.textCount].title}</h1>
-            <p>{this.loginText[this.state.textCount].description}</p>
+          <div className="login__description--slide">
+            <div>
+              <h2>{loginText[this.state.textCount].title}</h2>
+              <p>{loginText[this.state.textCount].description}</p>
+            </div>
+            <img
+              src={loginText[this.state.textCount].icon}
+              alt="login slide icon"
+            />
           </div>
-          <div className="login__description--slides"></div>
         </div>
         <div className="login__form">
-          <p>Login to your account</p>
+          <h2>Login to your account</h2>
           <form className="login__form--inputs">
-            <label>Username</label>
-            <input type="text" />
-            <label>Password</label>
-            <input type="text" />
+            <label for="username-login">Username</label>
+            <input id="username-login" type="text" />
+            <label for="password-login">Password</label>
+            <input id="password-login" type="password" />
             <button>Sign in</button>
           </form>
           <div className="login__form--register">
