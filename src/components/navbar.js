@@ -1,16 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlusCircle
+} from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar__title">
-        <h2>Shoplly</h2>
+        <Link to='/'>Shoplly</Link>
       </div>
       <div className="navbar__links">
-        <p>Login</p>
-        <p>Register</p>
-        <p>Products</p>
-        <p>+</p>
+        <Link to='/products' >Products</Link>
+        <Link to='/login' >Login</Link>
+        <Link to='/register' >Register</Link>
+        <Link to='/products/add' >
+        <FontAwesomeIcon className='navbar__links--add' icon={faPlusCircle} />
+        </Link>
       </div>
     </div>
   );

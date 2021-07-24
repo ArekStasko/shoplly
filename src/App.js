@@ -15,9 +15,9 @@ function App() {
   return (
     <Provider store={store}>
       <div className="app">
-        <Navbar />
         <Router>
           <PersistGate persistor={persistor}>
+          <Navbar />
             <Switch>
               <Route exact path="/" component={FirstPage} />
               <Route path="/login" component={Login} />
