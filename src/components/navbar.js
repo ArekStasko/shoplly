@@ -10,7 +10,8 @@ import styled from "styled-components";
 
 const NavLinks = styled.div`
 @media (max-width: 768px){
-  display: ${({ show }) => (show ? "flex" : "none")};
+  transition: all 800ms ease-in-out;
+  transform: translateY(${({ show }) => (show ? "0vh" : "-100vh")});
 }
 `;
 
@@ -23,23 +24,20 @@ const Navbar = () => {
         <Link to="/">Shoplly</Link>
       </div>
       <div onClick={() => setShow(!show)} className="navbar__mobileIcon">
-        {show ? (
           <FontAwesomeIcon
             className="navbar__mobileIcon--nonActive"
-            icon={faTimes}
-          />
-        ) : (
-          <FontAwesomeIcon
-            className="navbar__mobileIcon--active"
             icon={faEllipsisH}
           />
-        )}
       </div>
       <NavLinks
         onClick={() => setShow(!show)}
         show={show}
         className="navbar__links"
       >
+         <FontAwesomeIcon
+            className="navbar__links--active"
+            icon={faTimes}
+          />
         <Link className="navbar__links--link" to="/products">
           Products
         </Link>

@@ -48,9 +48,9 @@ class Login extends React.Component {
         <div className="login__form">
           <h2>Login to your account</h2>
           <form className="login__form--inputs">
-            <label for="username-login">Username</label>
+            <label htmlFor="username-login">Username</label>
             <input id="username-login" type="text" />
-            <label for="password-login">Password</label>
+            <label htmlFor="password-login">Password</label>
             <input id="password-login" type="password" />
             <button>Sign in</button>
           </form> 
