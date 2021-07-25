@@ -39,6 +39,10 @@
     justify-content: space-evenly;
     width: 50%;
 
+    &--active{
+      display: none;
+    }
+
     &--add {
       font-size: 35px;
       color: #6c63ff;
@@ -110,6 +114,7 @@
 
          &--active{
           position: absolute;
+          display: initial;
           right: 30px;
           top: 30px;
           z-index: 3;

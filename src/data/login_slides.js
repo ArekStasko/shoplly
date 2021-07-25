@@ -5,21 +5,21 @@ import Rate from '../assets/images/login_slides/rate.svg'
 
 export const loginText = [
     {
-      title: "Lorem ipsum",
+      title: "Buy cheap and fast",
       description:
-        "Morbi tincidunt lacus purus",
+        "After purchasing the premium version, the parcel will always be delivered on the next day!",
       icon: Buy,  
     },
     {
-      title: "dolor sit amet",
+      title: "Sell everything you want",
       description:
-        "Morbi tincidunt lacus purus",
+        "In our shops you can even sell your used socks",
       icon: Sell,  
     },
     {
-      title: "consectetur adipiscing",
+      title: "You can rate products",
       description:
-        "Morbi tincidunt lacus purus",
+        "you can leave a review or comment",
       icon: Rate,  
     },
   ];

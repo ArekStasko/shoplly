@@ -1,5 +1,6 @@
 import React from "react";
 import { loginText } from "../data/login_slides";
+import { Link } from "react-router-dom";
 import gsap from 'gsap'
 
 class Login extends React.Component {
@@ -56,7 +57,7 @@ class Login extends React.Component {
           </form> 
           <div className="login__form--register">
             <p>Don't have account ?</p>
-            <button>Register</button>
+            <Link to='/register'>Register</Link>
           </div>
         </div>
       </div>
