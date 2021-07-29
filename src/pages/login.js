@@ -31,6 +31,10 @@ class Login extends React.Component {
     .fromTo(login, {x: '-=200'}, {duration:1.1, x: '+=200', autoAlpha: 1})
   }
 
+  componentWillUnmount() {
+    console.log('AAAAA')
+  }
+
   render() {
     return (
       <div ref={this.wrapperRef} className="login">
