@@ -14,7 +14,7 @@
         background-color: #f5f1f1ad;
         width: 500px;
         height: 600px;
-        padding: 10px;
+        padding: 20px;
         border-radius: 6px;
         box-shadow: -21px 18px 48px -23px rgba(0,0,0,0.75);
 
@@ -61,6 +61,7 @@
 
             button{
                 font-size: 25px;
+                align-self: center;
                 width: 90%;
                 height: 50px;
                 background-color: #6C63FF;
@@ -77,6 +78,15 @@
             
             &--place{
                 display: flex;
+
+                div{
+                    position: relative;
+
+                    select{
+                      appearance: none;
+                        
+                    }
+                }
             }
         }
     }
