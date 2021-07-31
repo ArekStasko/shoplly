@@ -25,7 +25,11 @@ class Register extends React.Component {
 
   provinceSelect = (e) => {
     this.setState({
-      contact: { ...this.state.contact, province: e.target.value },
+      contact: {
+        ...this.state.contact,
+        province: e.target.value,
+        city: RegisterAdressData[0][e.target.value][0],
+      },
     });
   };
 
@@ -36,6 +40,7 @@ class Register extends React.Component {
   };
 
   render() {
+    console.log(this.state.contact);
     return (
       <div className="register">
         {this.state.registerStep === 1 ? (
@@ -43,7 +48,7 @@ class Register extends React.Component {
             <form className="register__contact-data--form">
               <div>
                 <label htmlFor="register-number">Your number</label>
-                <input id="register-number" type="text" />
+                <input id="register-number" type="number" />
               </div>
               <div>
                 <label htmlFor="register-email">Your email</label>
@@ -58,7 +63,6 @@ class Register extends React.Component {
                     onChange={(e) => this.provinceSelect(e)}
                     id="register_adress-province"
                   >
-                    <option value="Province">Province</option>
                     {Object.entries(RegisterAdressData[0]).map((item) => (
                       <option key={item[0]} value={item[0]}>
                         {item[0]}
@@ -104,12 +108,20 @@ class Register extends React.Component {
                 this.setState({ registerStep: this.state.registerStep + 1 });
               }}
             >
-              <label htmlFor="register-nick">Nickname</label>
-              <input id="register-nick" type="text" />
-              <label htmlFor="register-password">Password</label>
-              <input id="register-password" type="text" />
-              <label htmlFor="register-repPassword">Repeat the password</label>
-              <input id="register-repPassword" type="text" />
+              <div>
+                <label htmlFor="register-nick">Nickname</label>
+                <input id="register-nick" type="text" />
+              </div>
+              <div>
+                <label htmlFor="register-password">Password</label>
+                <input id="register-password" type="text" />
+              </div>
+              <div>
+                <label htmlFor="register-repPassword">
+                  Repeat the password
+                </label>
+                <input id="register-repPassword" type="text" />
+              </div>
               <button type="submit">
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
