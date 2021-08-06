@@ -24,6 +24,7 @@ class Register extends React.Component {
       },
     };
     this.loginDataWrapper = React.createRef(null)
+    this.registerDataWrapper = React.createRef(null)
   }
 
   componentDidMount() {
@@ -53,7 +54,7 @@ class Register extends React.Component {
     return (
       <div className="register">
         {this.state.registerStep === 1 ? (
-          <div className="register__contact-data">
+          <div ref={this.registerDataWrapper} className="register__contact-data">
             <form className="register__contact-data--form">
               <div>
                 <label htmlFor="register-number">Your number</label>

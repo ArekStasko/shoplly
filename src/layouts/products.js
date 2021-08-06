@@ -5,15 +5,24 @@ import { connect } from 'react-redux'
 const Products = (props) => {
 
     return(
-        <div>
+        <div className='products'>
+            <div className='products__sidebar'>
+             <div>
+                 jakies
+             </div>
+             <div>
+                 opcje
+             </div>
+            </div>
+            <div className='products__wrapper'>
             {
           props.store.items.length > 0 ? (
                 props.store.items.map((item, index) => (
-                    <div key={index}>
+                    <div className='products__wrapper--element' key={index}>
                         <h3>{item.title}</h3>
                         <p>{item.description}</p>
                         <p>{item.price}</p>
-                        <p>{item.count}</p>
+                        <button>check</button>
                     </div>
               ))) : (
                   <div>
@@ -21,7 +30,7 @@ const Products = (props) => {
                   </div>
               )
             }
-            Products page
+            </div>
         </div>
     )
 }
