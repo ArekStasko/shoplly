@@ -2,19 +2,24 @@
 width: 100%;
 display: flex;
 align-content: center;
-justify-content: space-between;
+justify-content: flex-end;
 
     &__sidebar{
+position: fixed;
+left: 0;
 display: flex;
+margin-top: 20px;
 flex-direction: column;
 align-items: center;
 justify-content: center;
 width: 20%;
+height: 80%;
+border: 1px solid black;
     }
 
     &__wrapper{
 display: flex;
-align-items: center;
+align-items: flex;
 flex-wrap: wrap;
 width: 80%;
 

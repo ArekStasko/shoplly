@@ -1,5 +1,6 @@
 import React from "react";
 import { RegisterAdressData } from "../data/login_slides";
+import PlacePicker from "../components/placePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRight,
@@ -61,7 +62,7 @@ class Register extends React.Component {
             ref={this.registerDataWrapper}
             className="register__contact-data"
           >
-            <form className="register__contact-data--form">
+            <form onSubmit={e => {e.preventDefault(); console.log(this.state)}} className="register__contact-data--form">
               <div>
                 <label htmlFor="register-number">Your number</label>
                 <input id="register-number" type="number" />
@@ -70,38 +71,7 @@ class Register extends React.Component {
                 <label htmlFor="register-email">Your email</label>
                 <input id="register-email" type="text" />
               </div>
-              <div className="register__contact-data--form--place">
-                <div>
-                  <label htmlFor="register_adress-province">
-                    Choose your province
-                  </label>
-                  <select
-                    onChange={(e) => this.provinceSelect(e)}
-                    id="register_adress-province"
-                  >
-                    {Object.entries(RegisterAdressData[0]).map((item) => (
-                      <option key={item[0]} value={item[0]}>
-                        {item[0]}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="register_adress-city">Choose your city</label>
-                  <select
-                    onChange={(e) => this.citySelect(e)}
-                    id="register_adress-city"
-                  >
-                    {RegisterAdressData[0][this.state.contact.province].map(
-                      (item) => (
-                        <option key={item} value={item}>
-                          {item}
-                        </option>
-                      )
-                    )}
-                  </select>
-                </div>
-              </div>
+              <PlacePicker contact={this.state.contact} selectProvince={this.provinceSelect} selectCity={this.citySelect} />
               <button type="submit">
                 <FontAwesomeIcon icon={faCheck} />
               </button>
