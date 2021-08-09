@@ -9,6 +9,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id: 1,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -16,6 +18,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id: 2,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -23,6 +27,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id: 3,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -30,6 +36,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id: 4,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -37,6 +45,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id:5,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -44,6 +54,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id:6,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -51,6 +63,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id:7,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -58,6 +72,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id:8,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -65,6 +81,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id:9,
+            place: 'Zamosc'
         },
         {
             title: 'lorem ipsum',
@@ -72,6 +90,8 @@ const initialState = {
             price: 39.99,
             count: 13,
             rate: 4,
+            id:10,
+            place: 'Zamosc'
         },
     ]
 }

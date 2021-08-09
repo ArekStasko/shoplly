@@ -19,15 +19,47 @@ flex-wrap: wrap;
 width: 80%;
 
 &--element{
-    width: 200px;
-    height: 250px;
+    background-color: #f5f1f1;
+    border-radius: 10px;
+    width: 300px;
+    height: 350px;
     margin: 10px;
-    border: 1px solid black;
+    padding: 5px;
+    color: #000000;
+    text-decoration: none;
 
-    p{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    
+    &--img{
+        width: 100%;
+        height: 70%;
+
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+    }
+
+    &--title{
+        display: flex;
+        flex-direction: column;
+        h3{
+          color: #6c63ff;
+          font-weight: 400;
+          margin-bottom: 0;
+          transition: all 300ms ease-in-out;
+        }
+        p{
+          margin: 0;
+          color: #6c63ff;
+          font-weight: 100;
+        }
+    }
+
+    &:hover{
+            h3{
+              color: #FA5400;
+            }
     }
 }
     }
