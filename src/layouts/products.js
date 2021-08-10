@@ -2,13 +2,37 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import example from "../assets/images/example.jpg";
+import PlacePicker from "../components/placePicker";
 import { RegisterAdressData } from "../data/login_slides";
 
+
 class Products extends React.Component {
+  constructor(){
+    super();
+    this.state={
+      city: '',
+      province: 'Province'
+    }
+  }
 
   optionPicker = (e) => {
+    e.preventDefault()
+    console.log(this.state)
+  }
+
+  provinceSelect = (e) => {
+    this.setState({
+      province: e.target.value,
+      city: RegisterAdressData[0][e.target.value][0],
+    })
     e.preventDefault();
-    console.log("tak");
+  };
+
+  citySelect = (e) => {
+    this.setState({
+      city: e.target.value,
+    })
+    e.preventDefault();
   };
 
   render() {
@@ -21,6 +45,7 @@ class Products extends React.Component {
           <select></select>
           <select></select>
           <input />
+          <PlacePicker placeData={this.state} selectProvince={this.provinceSelect} selectCity={this.citySelect} />
           </form>
         </div>
         <div className="products__wrapper">

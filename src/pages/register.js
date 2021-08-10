@@ -71,7 +71,7 @@ class Register extends React.Component {
                 <label htmlFor="register-email">Your email</label>
                 <input id="register-email" type="text" />
               </div>
-              <PlacePicker contact={this.state.contact} selectProvince={this.provinceSelect} selectCity={this.citySelect} />
+              <PlacePicker placeData={this.state.contact} selectProvince={this.provinceSelect} selectCity={this.citySelect} />
               <button type="submit">
                 <FontAwesomeIcon icon={faCheck} />
               </button>
