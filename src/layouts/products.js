@@ -2,51 +2,75 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import example from "../assets/images/example.jpg";
-import PlacePicker from "../components/placePicker";
+//import PlacePicker from "../components/placePicker";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSort
+} from "@fortawesome/free-solid-svg-icons";
 import { RegisterAdressData } from "../data/login_slides";
-
+import { ProductsCategories } from '../data/login_slides'
 
 class Products extends React.Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      city: '',
-      province: 'Province'
-    }
+    this.state = {
+      province: "Province",
+      city: "",
+      category: '',
+      filter: false,
+    };
   }
 
   optionPicker = (e) => {
-    e.preventDefault()
-    console.log(this.state)
-  }
+    console.log(this.state);
+    e.preventDefault(e);
+  };
 
   provinceSelect = (e) => {
     this.setState({
       province: e.target.value,
       city: RegisterAdressData[0][e.target.value][0],
-    })
-    e.preventDefault();
+    });
   };
 
   citySelect = (e) => {
     this.setState({
       city: e.target.value,
-    })
-    e.preventDefault();
+    });
   };
 
   render() {
+    console.log(this.state)
     return (
       <div className="products">
-        <div className="products__sidebar">
-          <form onChange={(e) => this.optionPicker(e)}>
-          <select></select>
-          <select></select>
-          <select></select>
-          <select></select>
-          <input />
-          <PlacePicker placeData={this.state} selectProvince={this.provinceSelect} selectCity={this.citySelect} />
-          </form>
+        <div onMouseLeave={()=>this.setState({category: '', filter: false})} className="products__category">
+          <div className="products__category--nav">
+            {
+              Object.entries(ProductsCategories[0]).map(item=>(
+                <p onMouseEnter={()=>this.setState({category: item[0]})} >{item[0]}</p>
+              ))
+            }
+            </div>
+          <div className="products__category--filter">
+            <div>
+            <p onClick={()=>this.setState({category: '', filter: true})}>Filter</p>
+            <FontAwesomeIcon
+            className="products__category--filter--icon"
+            icon={faSort}
+          />
+            </div>
+          </div>
+          <div className="products__category--form">
+            {
+              this.state.category ? 
+              Object.entries(ProductsCategories[0][this.state.category]).map(item=>(
+                <p>{item[1]}</p>
+              ))
+              : this.state.filter ? 
+              <p>Filter section</p>
+              : null
+            }
+          </div>
         </div>
         <div className="products__wrapper">
           {this.props.store.items.length > 0 ? (

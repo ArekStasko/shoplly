@@ -21,6 +21,16 @@ export const loginText = [
   },
 ];
 
+export const ProductsCategories = [
+  {
+    House: ['Furniture', 'Garden', 'Weapons', 'Other'],
+    Electronics: ['Phones', 'Games', 'Computers', 'TV', 'Other'],
+    Sport: ['Team sports', 'Martial Arts', 'Winter Sports', 'Water Sports'],
+    Music: ['Instruments', 'Music cd`s', 'Other'],
+    Clothes: ['Shoes', 'Pants', 'Accessories', 'Hoodies', 'Jumpers']
+  }
+]
+
 export const RegisterAdressData = [
   {
     Province: ["First select Province"],
