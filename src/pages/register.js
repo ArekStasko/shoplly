@@ -62,7 +62,13 @@ class Register extends React.Component {
             ref={this.registerDataWrapper}
             className="register__contact-data"
           >
-            <form onSubmit={e => {e.preventDefault(); console.log(this.state)}} className="register__contact-data--form">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                console.log(this.state);
+              }}
+              className="register__contact-data--form"
+            >
               <div>
                 <label htmlFor="register-number">Your number</label>
                 <input id="register-number" type="number" />
@@ -71,7 +77,11 @@ class Register extends React.Component {
                 <label htmlFor="register-email">Your email</label>
                 <input id="register-email" type="text" />
               </div>
-              <PlacePicker placeData={this.state.contact} selectProvince={this.provinceSelect} selectCity={this.citySelect} />
+              <PlacePicker
+                placeData={this.state.contact}
+                selectProvince={this.provinceSelect}
+                selectCity={this.citySelect}
+              />
               <button type="submit">
                 <FontAwesomeIcon icon={faCheck} />
               </button>

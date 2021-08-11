@@ -1,0 +1,34 @@
+.placePicker {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    div {
+      position: relative;
+      width: 100%;
+      select {
+        appearance: none;
+        border: none;
+        margin: 0;
+        width: 100%;
+        font-size: inherit;
+        cursor: inherit;
+        line-height: inherit;
+        outline: none;
+
+        width: 90%;
+        height: 50px;
+        border: 1px solid #e0dbdb;
+        border-radius: 6px;
+        background-color: #f5f1f1ad;
+        border: 2px solid #b6b2b2;
+        outline: none;
+        transition: all 300ms ease-in-out;
+        padding: 10px;
+
+        &:focus {
+          border: 2px solid #6c63ff;
+        }
+      }
+    }
+}

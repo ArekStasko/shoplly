@@ -3,7 +3,7 @@ import { RegisterAdressData } from "../data/login_slides";
 
 const PlacePicker = (props) => {
   return (
-    <div className="register__contact-data--form--place">
+    <div className="placePicker">
       <div>
         <label htmlFor="register_adress-province">Choose province</label>
         <select
