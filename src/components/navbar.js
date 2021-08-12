@@ -8,6 +8,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
+const Nav = styled.div`
+transition: all 300ms ease-in-out;
+top: ${({hide})=>(hide?'-90px':'0px')};
+`
+
 const NavLinks = styled.div`
 @media (max-width: 768px){
   transition: all 800ms ease-in-out;
@@ -17,9 +22,22 @@ const NavLinks = styled.div`
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+  const [hide, setHide] = useState(false)
+
+  let prevScrollRange = window.pageYOffset;
+
+  window.onscroll = () => {
+    let scrollRange = window.pageYOffset
+    if(prevScrollRange > scrollRange){
+      setHide(false)
+    } else {
+      setHide(true)
+    }
+    prevScrollRange = scrollRange
+  }
 
   return (
-    <div className="navbar">
+    <Nav hide={hide} className="navbar">
       <div className="navbar__title">
         <Link to="/">Shoplly</Link>
       </div>
@@ -51,7 +69,7 @@ const Navbar = () => {
           <FontAwesomeIcon className="navbar__links--add" icon={faPlusCircle} />
         </Link>
       </NavLinks>
-    </div>
+    </Nav>
   );
 };
 

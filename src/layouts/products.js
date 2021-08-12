@@ -15,14 +15,14 @@ class Products extends React.Component {
       province: "Province",
       city: "",
       category: "",
+      subCategory: '',
       filter: false,
+      price: {
+        min: 0,
+        max: 0,
+      },
     };
   }
-
-  optionPicker = (e) => {
-    console.log(this.state);
-    e.preventDefault(e);
-  };
 
   provinceSelect = (e) => {
     this.setState({
@@ -36,6 +36,15 @@ class Products extends React.Component {
       city: e.target.value,
     });
   };
+
+  priceRange = (e, type) => {
+      this.setState({ 
+        price: {
+          ...this.state.price,
+          [type]: e.target.value,
+        } 
+      })
+  }
 
   render() {
     console.log(this.state);
@@ -78,15 +87,36 @@ class Products extends React.Component {
             <>
               {this.state.category ? (
                 Object.entries(ProductsCategories[0][this.state.category]).map(
-                  (item) => <p>{item[1]}</p>
+                  (item) => <p onClick={e=>this.setState({ subCategory: e.target.value })} >{item[1]}</p>
                 )
               ) : this.state.filter ? (
-                <div>
+                <div className="products__category--form--selectors">
                   <PlacePicker
                     placeData={this.state}
                     selectProvince={this.provinceSelect}
                     selectCity={this.citySelect}
                   />
+                  <div className="products__category--form--selectors--price">
+                    <div>
+                      <label htmlFor="min-price">Min:</label>
+                      <input
+                        onChange={e=>this.priceRange(e, 'min')}
+                        placeholder="$"
+                        id="min-price"
+                        type="number"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="max-price">Max:</label>
+                      <input
+                       onChange={e=>this.priceRange(e, 'max')}
+                       placeholder="$" 
+                       id="max-price" 
+                       type="number" 
+                      />
+                    </div>
+                  </div>
+                  <button>Filter</button>
                 </div>
               ) : null}
             </>
