@@ -4,13 +4,15 @@ import storage from "redux-persist/lib/storage"
 const initialState = {
     items: [
         {
-            title: 'lorem ipsum',
+            title: 'Poprawne filtrowanie',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis ex ligula. Aenean quis vehicula nisi. Nullam ac semper diam, non suscipit tortor. Quisque quis purus imperdiet, aliquam est maximus, lobortis mi.',
             price: 39.99,
             count: 13,
             rate: 4,
             id: 1,
-            place: 'Zamosc'
+            province: 'Malopolskie',
+            city: 'Krakow',
+
         },
         {
             title: 'lorem ipsum',
@@ -19,7 +21,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id: 2,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -28,7 +32,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id: 3,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -37,7 +43,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id: 4,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -46,7 +54,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id:5,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -55,7 +65,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id:6,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -64,7 +76,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id:7,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -73,7 +87,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id:8,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -82,7 +98,9 @@ const initialState = {
             count: 13,
             rate: 4,
             id:9,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska',
+
         },
         {
             title: 'lorem ipsum',
@@ -91,7 +109,8 @@ const initialState = {
             count: 13,
             rate: 4,
             id:10,
-            place: 'Zamosc'
+            place: 'Zamosc',
+            province: 'malopolska'
         },
     ]
 }

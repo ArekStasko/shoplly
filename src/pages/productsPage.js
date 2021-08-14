@@ -1,12 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import example from "../assets/images/example.jpg";
+import ProductsList from "../layouts/productsList";
 import PlacePicker from "../components/placePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
 import { RegisterAdressData } from "../data/login_slides";
 import { ProductsCategories } from "../data/login_slides";
+import styled from "styled-components";
+
+
+const CategoryNav = styled.div`
+transition: all 300ms ease-in-out;
+top: ${({hide})=>(hide?'0px':'90px')};
+`
 
 class Products extends React.Component {
   constructor() {
@@ -15,12 +21,13 @@ class Products extends React.Component {
       province: "Province",
       city: "",
       category: "",
-      subCategory: '',
+      subCategory: "",
       filter: false,
       price: {
         min: 0,
         max: 0,
       },
+      hide: false
     };
   }
 
@@ -38,19 +45,44 @@ class Products extends React.Component {
   };
 
   priceRange = (e, type) => {
-      this.setState({ 
-        price: {
-          ...this.state.price,
-          [type]: e.target.value,
-        } 
-      })
+    this.setState({
+      price: {
+        ...this.state.price,
+        [type]: e.target.value,
+      },
+    });
+  };
+
+  filterFunction = () => {
+   /* let arr = this.props.store.items.filter(item => {
+      if( item.province === this.state.province 
+       && item.city === this.state.city 
+       && item.price <= this.state.price.max
+       && item.price >= this.state.price.min
+      ){
+          return true
+      }
+      return false
+     })*/
+
   }
 
+  
+
   render() {
-    console.log(this.state);
+  let prevScrollRange = window.pageYOffset;
+
+  window.onscroll = () => {
+    let scrollRange = window.pageYOffset
+    this.setState({ hide: !(prevScrollRange > scrollRange) })
+    prevScrollRange = scrollRange
+  }
+
+
     return (
       <div className="products">
-        <div
+        <CategoryNav
+          hide={this.state.hide}
           onMouseLeave={() => this.setState({ category: "" })}
           className="products__category"
         >
@@ -87,7 +119,15 @@ class Products extends React.Component {
             <>
               {this.state.category ? (
                 Object.entries(ProductsCategories[0][this.state.category]).map(
-                  (item) => <p onClick={e=>this.setState({ subCategory: e.target.value })} >{item[1]}</p>
+                  (item) => (
+                    <p
+                      onClick={(e) =>
+                        this.setState({ subCategory: e.target.value })
+                      }
+                    >
+                      {item[1]}
+                    </p>
+                  )
                 )
               ) : this.state.filter ? (
                 <div className="products__category--form--selectors">
@@ -100,7 +140,7 @@ class Products extends React.Component {
                     <div>
                       <label htmlFor="min-price">Min:</label>
                       <input
-                        onChange={e=>this.priceRange(e, 'min')}
+                        onChange={(e) => this.priceRange(e, "min")}
                         placeholder="$"
                         id="min-price"
                         type="number"
@@ -109,43 +149,20 @@ class Products extends React.Component {
                     <div>
                       <label htmlFor="max-price">Max:</label>
                       <input
-                       onChange={e=>this.priceRange(e, 'max')}
-                       placeholder="$" 
-                       id="max-price" 
-                       type="number" 
+                        onChange={(e) => this.priceRange(e, "max")}
+                        placeholder="$"
+                        id="max-price"
+                        type="number"
                       />
                     </div>
                   </div>
-                  <button>Filter</button>
+                  <button onClick={this.filterFunction} >Filter</button>
                 </div>
               ) : null}
             </>
           </div>
-        </div>
-        <div className="products__wrapper">
-          {this.props.store.items.length > 0 ? (
-            this.props.store.items.map((item, index) => (
-              <Link
-                to={`product/${item.id}`}
-                className="products__wrapper--element"
-                key={index}
-              >
-                <div className="products__wrapper--element--img">
-                  <img src={example} alt="example-product_photo" />
-                </div>
-                <div className="products__wrapper--element--title">
-                  <h3>{item.title}</h3>
-                  <p>{item.place}</p>
-                </div>
-                <p>{item.price} zl</p>
-              </Link>
-            ))
-          ) : (
-            <div>
-              <h1>No items</h1>
-            </div>
-          )}
-        </div>
+        </CategoryNav>
+        <ProductsList store={this.props.store} />
       </div>
     );
   }

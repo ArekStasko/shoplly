@@ -28,11 +28,7 @@ const Navbar = () => {
 
   window.onscroll = () => {
     let scrollRange = window.pageYOffset
-    if(prevScrollRange > scrollRange){
-      setHide(false)
-    } else {
-      setHide(true)
-    }
+    setHide(!(prevScrollRange > scrollRange))
     prevScrollRange = scrollRange
   }
 

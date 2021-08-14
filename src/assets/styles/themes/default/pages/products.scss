@@ -8,7 +8,6 @@
   &__category {
     position: fixed;
     z-index: 3;
-    top: 90px;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -68,7 +67,6 @@
       }
     }
 
-
     &--form {
       display: flex;
       flex-wrap: wrap;
@@ -90,23 +88,23 @@
         }
       }
 
-      &--selectors{
-       width: 70%;
-       padding: 10px;
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
+      &--selectors {
+        width: 70%;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-       &--price{
+        &--price {
           display: flex;
           justify-content: center;
 
-          div{
+          div {
             display: flex;
             flex-direction: column;
             margin: 0px 5px;
 
-            input{
+            input {
               width: 50px;
               height: 50px;
               border: 1px solid #e0dbdb;
@@ -120,34 +118,33 @@
 
               &::-webkit-input-placeholder {
                 text-align: center;
-             }
-      
+              }
+
               &:focus {
                 border: 2px solid #6c63ff;
               }
-      
+
               &::-webkit-inner-spin-button {
                 -webkit-appearance: none;
               }
-                }
+            }
           }
-  
         }
-        button{
-        align-self: center;
-        width: 300px;
-        height: 50px;
-        background-color: #6c63ff;
-        color: #ffffff;
-        border: 1px solid #e0dbdb;
-        border-radius: 6px;
-        cursor: pointer;
-        margin-top: 18px;
-        transition: all 300ms ease-in-out;
+        button {
+          align-self: center;
+          width: 300px;
+          height: 50px;
+          background-color: #6c63ff;
+          color: #ffffff;
+          border: 1px solid #e0dbdb;
+          border-radius: 6px;
+          cursor: pointer;
+          margin-top: 18px;
+          transition: all 300ms ease-in-out;
 
-        &:hover {
-          transform: scale(1.05);
-        }
+          &:hover {
+            transform: scale(1.05);
+          }
         }
       }
     }

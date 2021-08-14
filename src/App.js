@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store, persistor } from "./store/index";
 import { PersistGate } from "redux-persist/integration/react";
-import Products from "./layouts/products";
+import Products from "./pages/productsPage";
 import AddProducts from "./pages/addProduct";
 import FirstPage from "./pages/firstPage";
 import Login from "./pages/login";
