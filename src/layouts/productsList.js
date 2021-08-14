@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import example from "../assets/images/example.jpg";
 
 const ProductsList = (props) => {
-
   return (
     <div className="products__wrapper">
-      {props.store.items.length > 0 ? (
-        props.store.items.map((item, index) => (
+      {props.store.length > 0 ? (
+        props.store.map((item, index) => (
           <Link
             to={`product/${item.id}`}
             className="products__wrapper--element"

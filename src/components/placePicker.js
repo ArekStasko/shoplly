@@ -20,7 +20,7 @@ const PlacePicker = (props) => {
       <div>
         <label htmlFor="register_adress-city">Choose city</label>
         <select onChange={(e) => props.selectCity(e)} id="register_adress-city">
-          {RegisterAdressData[0][props.placeData.province].map((item) => (
+          {RegisterAdressData[0][props.placeData.province===""?'Province':props.placeData.province].map((item) => (
             <option key={item} value={item}>
               {item}
             </option>

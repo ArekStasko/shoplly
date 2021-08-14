@@ -19,7 +19,7 @@ class Register extends React.Component {
       contact: {
         number: "",
         email: "",
-        province: "Province",
+        province: "",
         city: "",
       },
     };
@@ -65,7 +65,6 @@ class Register extends React.Component {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                console.log(this.state);
               }}
               className="register__contact-data--form"
             >
