@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import ProductsList from "../layouts/productsList";
-import PlacePicker from "../components/placePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSlidersH, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { RegisterAdressData } from "../data/login_slides";
+import {
+  faSlidersH,
+  faSearch,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import { ProductsCategories } from "../data/login_slides";
 import styled from "styled-components";
 
@@ -25,83 +27,50 @@ class Products extends React.Component {
     super(props);
     this.state = {
       productsData: this.props.store.items,
-      filterData: {
-        province: "",
-        city: "",
-        min: "",
-        max: "",
-      },
+      place: "",
+      min: "",
+      max: "",
       category: "",
+      sortValue: false,
       subCategory: "",
       filter: false,
       hide: false,
       error: false,
-      searchText: ''
+      searchText: "",
     };
   }
 
-  provinceSelect = (e) => {
-    this.setState({
-      filterData: {
-        ...this.state.filterData,
-        province: e.target.value,
-        city: RegisterAdressData[0][e.target.value][0],
-      },
-    });
-  };
-
-  citySelect = (e) => {
-    this.setState({
-      filterData: {
-        ...this.state.filterData,
-        city: e.target.value,
-      },
-    });
-  };
-
   priceRange = (e, type) => {
     this.setState({
-      filterData: {
-        ...this.state.filterData,
-        [type]: e.target.value,
-      },
+      [type]: parseInt(e.target.value),
     });
   };
 
-  searchFunction = data => {
-    return data.filter(item=>item.title.toLowerCase().indexOf(this.state.searchText.toLowerCase()) > -1)
-  }
+  searchFunction = (data) => {
+    return data.filter(
+      (item) =>
+        item.title.toLowerCase().indexOf(this.state.searchText.toLowerCase()) >
+          -1 &&
+        item.place.toLowerCase().indexOf(this.state.place.toLowerCase()) > -1
+    );
+  };
 
   filterFunction = () => {
-    const filterOptions = this.state.filterData;
+    let filteredData =
+      this.state.max && this.state.min
+        ? this.props.store.items.filter(
+            (item) =>
+              item.price >= this.state.min && item.price <= this.state.max
+          )
+        : this.props.store.items;
 
-    if (filterOptions.province === "") {
-      return false;
+    if (this.state.sortValue === "highLow") {
+      filteredData.sort((a, b) => b.price - a.price);
+    } else if (this.state.sortValue === "lowHigh") {
+      filteredData.sort((a, b) => a.price - b.price);
     }
 
-    if (filterOptions.min > filterOptions.max) {
-      this.setState({ error: true });
-      return false;
-    }
-
-    const filteredData =
-      filterOptions.max === "" && filterOptions.max === ""
-        ? this.state.productsData.filter((item) => {
-            return (
-              item.province === filterOptions.province &&
-              item.city === filterOptions.city
-            );
-          })
-        : this.state.productsData.filter((item) => {
-            return (
-              item.province === filterOptions.province &&
-              item.city === filterOptions.city &&
-              item.price < filterOptions.max &&
-              item.price > filterOptions.min
-            );
-          });
-
-    this.setState({ error: false, productsData: filteredData });
+    this.setState({ productsData: filteredData });
   };
 
   render() {
@@ -112,8 +81,6 @@ class Products extends React.Component {
       this.setState({ hide: !(prevScrollRange > scrollRange) });
       prevScrollRange = scrollRange;
     };
-
-    console.log(this.state)
 
     return (
       <div className="products">
@@ -126,20 +93,27 @@ class Products extends React.Component {
             {Object.entries(ProductsCategories[0]).map((item) => (
               <p
                 onMouseEnter={() =>
-                  this.setState({ category: item[0], subCategory: "", filter: false })
+                  this.setState({
+                    category: item[0],
+                    subCategory: "",
+                    filter: false,
+                  })
                 }
               >
                 {item[0]}
               </p>
             ))}
             <div className="products__category--nav--search">
-            <input onChange={e=>this.setState({ searchText: e.target.value })} type='text' />
-            <div className="products__category--nav--search--iconWrapper">
-            <FontAwesomeIcon
-                className="products__category--nav--search--iconWrapper--icon"
-                icon={faSearch}
+              <input
+                onChange={(e) => this.setState({ searchText: e.target.value })}
+                type="text"
               />
-            </div>
+              <div className="products__category--nav--search--iconWrapper">
+                <FontAwesomeIcon
+                  className="products__category--nav--search--iconWrapper--icon"
+                  icon={faSearch}
+                />
+              </div>
             </div>
           </div>
           <div className="products__category--filter">
@@ -167,11 +141,9 @@ class Products extends React.Component {
                 Object.entries(ProductsCategories[0][this.state.category]).map(
                   (item) => (
                     <p
-                      onClick={(e) =>{
-                        console.log(e)
-                        this.setState({ subCategory: item[1] })
-                      }
-                      }
+                      onClick={(e) => {
+                        this.setState({ subCategory: item[1] });
+                      }}
                     >
                       {item[1]}
                     </p>
@@ -179,11 +151,24 @@ class Products extends React.Component {
                 )
               ) : this.state.filter ? (
                 <div className="products__category--form--selectors">
-                  <PlacePicker
-                    placeData={this.state.filterData}
-                    selectProvince={this.provinceSelect}
-                    selectCity={this.citySelect}
-                  />
+                  <div className="products__category--form--selectors--search">
+                    <input
+                      id="product-location"
+                      placeholder="Select product city"
+                      onChange={(e) =>
+                        this.setState({
+                          place: e.target.value,
+                        })
+                      }
+                      type="text"
+                    />
+                    <div className="products__category--form--selectors--search--iconWrapper">
+                      <FontAwesomeIcon
+                        className="products__category--form--selectors--search--iconWrapper--icon"
+                        icon={faMapMarkerAlt}
+                      />
+                    </div>
+                  </div>
                   <div className="products__category--form--selectors--price">
                     <div>
                       <label htmlFor="min-price">Min:</label>
@@ -206,13 +191,26 @@ class Products extends React.Component {
                       />
                     </div>
                   </div>
+                  <div className="products__category--form--selectors--sort">
+                    <select
+                      onChange={(e) =>
+                        this.setState({ sortValue: e.target.value })
+                      }
+                    >
+                      <option value="" disabled selected>
+                        Sort by
+                      </option>
+                      <option value="highLow">Price: High-Low</option>
+                      <option value="lowHigh">Price: Low-High</option>
+                    </select>
+                  </div>
                   <button onClick={this.filterFunction}>Filter</button>
                   <button
                     onClick={() =>
                       this.setState({ productsData: this.props.store.items })
                     }
                   >
-                    Clean Filter
+                    Clear Filter
                   </button>
                 </div>
               ) : null}
