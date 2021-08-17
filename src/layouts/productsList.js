@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import example from "../assets/images/example.jpg";
+
 
 const ProductsList = (props) => {
   return (
@@ -13,7 +13,7 @@ const ProductsList = (props) => {
             key={index}
           >
             <div className="products__wrapper--element--img">
-              <img src={example} alt="example-product_photo" />
+              <img src="https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg" alt="example-product_photo" />
             </div>
             <div className="products__wrapper--element--title">
               <h3>{item.title}</h3>
