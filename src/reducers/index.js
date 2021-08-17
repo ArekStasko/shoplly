@@ -12,6 +12,8 @@ const initialState = {
       rate: 4,
       id: 1,
       place: "Krakow",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -22,6 +24,8 @@ const initialState = {
       rate: 4,
       id: 2,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -32,6 +36,8 @@ const initialState = {
       rate: 4,
       id: 3,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -42,6 +48,8 @@ const initialState = {
       rate: 4,
       id: 4,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -52,6 +60,8 @@ const initialState = {
       rate: 4,
       id: 5,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -62,6 +72,8 @@ const initialState = {
       rate: 4,
       id: 6,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "Co za zena",
@@ -72,6 +84,8 @@ const initialState = {
       rate: 4,
       id: 7,
       place: "Krakow",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -82,6 +96,8 @@ const initialState = {
       rate: 4,
       id: 8,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -92,6 +108,8 @@ const initialState = {
       rate: 4,
       id: 9,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
     {
       title: "lorem ipsum",
@@ -102,6 +120,8 @@ const initialState = {
       rate: 4,
       id: 10,
       place: "Zamosc",
+      category: 'electronics',
+      subCategory: 'phones'
     },
   ],
 };

@@ -32,7 +32,7 @@ class Products extends React.Component {
       max: "",
       category: "",
       sortValue: false,
-      subCategory: "",
+      subCategory: [],
       filter: false,
       hide: false,
       error: false,
@@ -73,6 +73,20 @@ class Products extends React.Component {
     this.setState({ productsData: filteredData });
   };
 
+  categoryFilter = (e) => {
+    const choosenItem = e.target.value.toLowerCase();
+    const isValueIn = this.state.subCategory.indexOf(choosenItem);
+    let newCat = this.state.subCategory;
+    isValueIn === -1 ? newCat.push(choosenItem) : newCat.splice(isValueIn, 1);
+
+    const filteredData = newCat.length
+      ? this.props.store.items.filter(
+          (item) => newCat.indexOf(item.subCategory.toLowerCase()) !== -1
+        )
+      : this.props.store.items;
+    this.setState({ subCategory: newCat, productsData: filteredData });
+  };
+
   render() {
     let prevScrollRange = window.pageYOffset;
 
@@ -86,19 +100,19 @@ class Products extends React.Component {
       <div className="products">
         <CategoryNav
           hide={this.state.hide}
-          onMouseLeave={() => this.setState({ category: "", subCategory: "" })}
+          onMouseLeave={() => this.setState({ category: "" })}
           className="products__category"
         >
           <div className="products__category--nav">
             {Object.entries(ProductsCategories[0]).map((item) => (
               <p
-                onMouseEnter={() =>
+                key={item[0]}
+                onMouseEnter={() => {
                   this.setState({
                     category: item[0],
-                    subCategory: "",
                     filter: false,
-                  })
-                }
+                  });
+                }}
               >
                 {item[0]}
               </p>
@@ -122,7 +136,6 @@ class Products extends React.Component {
                 onClick={() =>
                   this.setState((state) => ({
                     category: "",
-                    subCategory: "",
                     filter: !state.filter,
                   }))
                 }
@@ -140,13 +153,22 @@ class Products extends React.Component {
               {this.state.category ? (
                 Object.entries(ProductsCategories[0][this.state.category]).map(
                   (item) => (
-                    <p
-                      onClick={(e) => {
-                        this.setState({ subCategory: item[1] });
-                      }}
-                    >
-                      {item[1]}
-                    </p>
+                    <div className="products__category--form--checkbox" key={item[1]}>
+                      <div>
+                      <input
+                        id={item[1]}
+                        checked={
+                          this.state.subCategory.indexOf(
+                            item[1].toLowerCase()
+                          ) !== -1
+                        }
+                        type="checkbox"
+                        value={item[1]}
+                        onChange={(e) => this.categoryFilter(e)}
+                      />
+                      <label htmlFor={item[1]}>{item[1]}</label>
+                      </div>
+                    </div>
                   )
                 )
               ) : this.state.filter ? (
