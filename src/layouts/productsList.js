@@ -8,12 +8,12 @@ const ProductsList = (props) => {
       {props.store.length > 0 ? (
         props.store.map((item, index) => (
           <Link
-            to={`product/${item.id}`}
+            to={`products/${item.id}`}
             className="products__wrapper--element"
             key={index}
           >
             <div className="products__wrapper--element--img">
-              <img src="https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg" alt="example-product_photo" />
+              <img src={item.imgSource} alt="example-product_photo" />
             </div>
             <div className="products__wrapper--element--title">
               <h3>{item.title}</h3>

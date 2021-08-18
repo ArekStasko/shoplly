@@ -10,7 +10,9 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 1,
+      id: '1',
+      imgSource: `https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg`,
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_50,h_50,c_fill,r_max/user.jpg`,
       place: "Krakow",
       category: 'electronics',
       subCategory: 'phones'
@@ -22,8 +24,10 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 2,
+      id: '2',
       place: "Zamosc",
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       category: 'electronics',
       subCategory: 'phones'
     },
@@ -34,8 +38,24 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 3,
+      id: '3',
       place: "Zamosc",
+      category: 'electronics',
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
+      subCategory: 'phones'
+    },
+    {
+      title: "lorem ipsum",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis ex ligula. Aenean quis vehicula nisi. Nullam ac semper diam, non suscipit tortor. Quisque quis purus imperdiet, aliquam est maximus, lobortis mi.",
+      price: 39.99,
+      count: 13,
+      rate: 4,
+      id: '4',
+      place: "Zamosc",
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       category: 'electronics',
       subCategory: 'phones'
     },
@@ -46,9 +66,11 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 4,
+      id: '5',
       place: "Zamosc",
       category: 'electronics',
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       subCategory: 'phones'
     },
     {
@@ -58,20 +80,10 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 5,
+      id: '6',
       place: "Zamosc",
-      category: 'electronics',
-      subCategory: 'phones'
-    },
-    {
-      title: "lorem ipsum",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis ex ligula. Aenean quis vehicula nisi. Nullam ac semper diam, non suscipit tortor. Quisque quis purus imperdiet, aliquam est maximus, lobortis mi.",
-      price: 39.99,
-      count: 13,
-      rate: 4,
-      id: 6,
-      place: "Zamosc",
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       category: 'electronics',
       subCategory: 'phones'
     },
@@ -82,9 +94,12 @@ const initialState = {
       price: 64.99,
       count: 13,
       rate: 4,
-      id: 7,
+      id: '7',
       place: "Krakow",
       category: 'electronics',
+      
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       subCategory: 'phones'
     },
     {
@@ -94,8 +109,10 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 8,
+      id: '8',
       place: "Zamosc",
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       category: 'electronics',
       subCategory: 'phones'
     },
@@ -106,8 +123,10 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 9,
+      id: '9',
       place: "Zamosc",
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       category: 'electronics',
       subCategory: 'phones'
     },
@@ -118,9 +137,11 @@ const initialState = {
       price: 39.99,
       count: 13,
       rate: 4,
-      id: 10,
+      id: '10',
       place: "Zamosc",
       category: 'electronics',
+      imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
       subCategory: 'phones'
     },
   ],

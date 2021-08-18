@@ -9,6 +9,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import ErrorPage from "./pages/error";
 import Navbar from "./components/navbar";
+import ProductLayout from "./layouts/productLayout";
 import "./assets/styles/themes/default/theme.scss";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
               <Route path="/register" component={Register} />
               <Route exact path="/products" component={Products} />
               <Route path="/products/add" component={AddProducts} />
+              <Route path="/products/:id" component={ProductLayout} />
               <Route path="*" component={ErrorPage} />
             </Switch>
           </PersistGate>

@@ -6,9 +6,14 @@
 
 
 /* components imports */
-
-@import './pages/login.scss';
-@import './pages/register.scss';
 @import './components/navbar.scss';
 @import './components/placePicker.scss';
+
+/* pages imports */
+@import './pages/login.scss';
+@import './pages/register.scss';
 @import './pages/products.scss';
+
+/* layouts imports */
+
+@import './layouts/productLayout.scss'
