@@ -19,7 +19,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: false,
       negotiations: false,
-      condition: 'Used'
+      condition: 'Used',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -37,7 +39,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: true,
       negotiations: true,
-      condition: 'New'
+      condition: 'New',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -55,7 +59,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: false,
       negotiations: false,
-      condition: 'New'
+      condition: 'New',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -73,7 +79,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: true,
       negotiations: true,
-      condition: 'Damaged'
+      condition: 'Damaged',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -91,7 +99,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: false,
       negotiations: false,
-      condition: 'Used'
+      condition: 'Used',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -109,7 +119,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: true,
       negotiations: true,
-      condition: 'Used'
+      condition: 'Used',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "Co za zena",
@@ -127,7 +139,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: false,
       negotiations: false,
-      condition: 'New'
+      condition: 'New',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -145,7 +159,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: true,
       negotiations: true,
-      condition: 'New'
+      condition: 'New',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -163,7 +179,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: false,
       negotiations: false,
-      condition: 'Damaged'
+      condition: 'Damaged',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
     {
       title: "lorem ipsum",
@@ -181,7 +199,9 @@ const initialState = {
       userName: 'loremIpsum',
       ship: true,
       negotiations: true,
-      condition: 'Used'
+      condition: 'Used',
+      phoneNumber: '123-456-789',
+      userEmail: 'example@omail.com',
     },
   ],
   userExample: {
