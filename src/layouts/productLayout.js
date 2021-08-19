@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+faChevronLeft,
+faChevronRight
+} from "@fortawesome/free-solid-svg-icons";
 
 const ShipStatus = styled.div`
   background-color: ${({ status }) => (status ? "#32CD32" : "#ff0f0f")};
@@ -22,16 +27,34 @@ const ConditionInfo = styled.div`
 `;
 
 const ProductLayout = (props) => {
+  let [count, setCount] = useState(0)  
   const { id } = useParams();
   const data = props.store.items.find((item) => item.id === id);
   const user = props.store.userExample;
 
-  console.log(data);
+  console.log(count)
+  
   return (
     <div className="product">
       <div className="product__show">
         <div className="product__show--carousel">
-          <img alt="examplePhoto" src={data.imgSource} />
+            <div
+             onClick={()=>count === 0 ? setCount(2) : setCount(count-1)}
+             className='product__show--carousel--btn'
+              >
+            <FontAwesomeIcon
+                icon={faChevronLeft}
+              />
+            </div>
+          <img alt="examplePhoto" src={data.imgSource[count]} />
+            <div 
+             onClick={()=>count === 2 ? setCount(0) : setCount(count+1)}
+             className='product__show--carousel--btn' 
+             >
+            <FontAwesomeIcon
+                icon={faChevronRight}
+              />
+            </div>
         </div>
         <div className="product__show--buy">
           <div className="product__show--buy--user">

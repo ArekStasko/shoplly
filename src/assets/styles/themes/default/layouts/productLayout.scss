@@ -24,8 +24,29 @@
       border-radius: 6px;
 
       img {
-        width: 90%;
-        height: 90%;
+        width: 80%;
+        height: 80%;
+        border-radius: 6px;
+      }
+
+      &--btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #6c63ff;
+        color: #6c63ff;
+        width: 30px;
+        height: 30px;  
+        border-radius: 100px;
+        margin: 5px;
+        cursor: pointer;
+        transition: all 300ms ease-in-out;
+
+        &:hover{
+            background-color: #6c63ff;
+            color: #ffffff;
+            transform: scale(1.1);
+        }
       }
     }
 

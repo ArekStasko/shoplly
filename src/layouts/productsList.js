@@ -13,7 +13,7 @@ const ProductsList = (props) => {
             key={index}
           >
             <div className="products__wrapper--element--img">
-              <img src={item.imgSource} alt="example-product_photo" />
+              <img src={item.imgSource[0]} alt="example-product_photo" />
             </div>
             <div className="products__wrapper--element--title">
               <h3>{item.title}</h3>
