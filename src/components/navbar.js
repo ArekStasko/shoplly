@@ -24,16 +24,19 @@ const Navbar = () => {
   const [show, setShow] = useState(false);
   const [hide, setHide] = useState(false)
 
-  let prevScrollRange = window.pageYOffset;
+  let prevScrollRange = window.scrollY 
 
   window.onscroll = () => {
-    let scrollRange = window.pageYOffset
+    let scrollRange = window.scrollY
     setHide(!(prevScrollRange > scrollRange))
     prevScrollRange = scrollRange
   }
 
+  console.log(window)
+
   return (
-    <Nav hide={hide} className="navbar">
+    <Nav
+     hide={hide} className="navbar">
       <div className="navbar__title">
         <Link to="/">Shoplly</Link>
       </div>

@@ -12,10 +12,14 @@ const initialState = {
       rate: 4,
       id: '1',
       imgSource: `https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg`,
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_50,h_50,c_fill,r_max/user.jpg`,
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
       place: "Krakow",
       category: 'electronics',
-      subCategory: 'phones'
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: false,
+      negotiations: false,
+      condition: 'Used'
     },
     {
       title: "lorem ipsum",
@@ -27,9 +31,13 @@ const initialState = {
       id: '2',
       place: "Zamosc",
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
       category: 'electronics',
-      subCategory: 'phones'
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: true,
+      negotiations: true,
+      condition: 'New'
     },
     {
       title: "lorem ipsum",
@@ -42,8 +50,12 @@ const initialState = {
       place: "Zamosc",
       category: 'electronics',
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
-      subCategory: 'phones'
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: false,
+      negotiations: false,
+      condition: 'New'
     },
     {
       title: "lorem ipsum",
@@ -55,9 +67,13 @@ const initialState = {
       id: '4',
       place: "Zamosc",
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
       category: 'electronics',
-      subCategory: 'phones'
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: true,
+      negotiations: true,
+      condition: 'Damaged'
     },
     {
       title: "lorem ipsum",
@@ -70,8 +86,12 @@ const initialState = {
       place: "Zamosc",
       category: 'electronics',
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
-      subCategory: 'phones'
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: false,
+      negotiations: false,
+      condition: 'Used'
     },
     {
       title: "lorem ipsum",
@@ -83,9 +103,13 @@ const initialState = {
       id: '6',
       place: "Zamosc",
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
       category: 'electronics',
-      subCategory: 'phones'
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: true,
+      negotiations: true,
+      condition: 'Used'
     },
     {
       title: "Co za zena",
@@ -97,10 +121,13 @@ const initialState = {
       id: '7',
       place: "Krakow",
       category: 'electronics',
-      
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
-      subCategory: 'phones'
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: false,
+      negotiations: false,
+      condition: 'New'
     },
     {
       title: "lorem ipsum",
@@ -112,9 +139,13 @@ const initialState = {
       id: '8',
       place: "Zamosc",
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
       category: 'electronics',
-      subCategory: 'phones'
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: true,
+      negotiations: true,
+      condition: 'New'
     },
     {
       title: "lorem ipsum",
@@ -126,9 +157,13 @@ const initialState = {
       id: '9',
       place: "Zamosc",
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/3491d.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
       category: 'electronics',
-      subCategory: 'phones'
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: false,
+      negotiations: false,
+      condition: 'Damaged'
     },
     {
       title: "lorem ipsum",
@@ -141,10 +176,19 @@ const initialState = {
       place: "Zamosc",
       category: 'electronics',
       imgSource: 'https://res.cloudinary.com/dulsntqev/image/upload/v1629228772/sample.jpg',
-      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_100,h_100,c_fill,r_max/user.jpg`,
-      subCategory: 'phones'
+      userImgExample: `https://res.cloudinary.com/dulsntqev/image/upload/w_70,h_70,c_fill,r_max/user.jpg`,
+      subCategory: 'phones',
+      userName: 'loremIpsum',
+      ship: true,
+      negotiations: true,
+      condition: 'Used'
     },
   ],
+  userExample: {
+    userName: 'Kamil',
+    surname: 'Nowak',
+    place: 'Krakow',
+  }
 };
 
 const persistConfig = {
