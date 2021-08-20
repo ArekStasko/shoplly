@@ -17,6 +17,10 @@ const KeyInfo = styled.div`
     available ? "#32CD32de" : "#ff0f0fde"};
 `;
 
+const ImageDot = styled.div`
+  background-color: ${({ active }) => (active ? '#6c63ff' : 'none') }
+`
+
 const ConditionInfo = styled.div`
   background-color: ${({ condition }) =>
     condition === "new"
@@ -31,16 +35,15 @@ const ProductLayout = (props) => {
   const { id } = useParams();
   const data = props.store.items.find((item) => item.id === id);
   const user = props.store.userExample;
-
-  console.log(count)
   
   return (
     <div className="product">
       <div className="product__show">
         <div className="product__show--carousel">
+            <div className="product__show--carousel--wrapper" >
             <div
              onClick={()=>count === 0 ? setCount(2) : setCount(count-1)}
-             className='product__show--carousel--btn'
+             className='product__show--carousel--wrapper--btn'
               >
             <FontAwesomeIcon
                 icon={faChevronLeft}
@@ -49,11 +52,15 @@ const ProductLayout = (props) => {
           <img alt="examplePhoto" src={data.imgSource[count]} />
             <div 
              onClick={()=>count === 2 ? setCount(0) : setCount(count+1)}
-             className='product__show--carousel--btn' 
+             className='product__show--carousel--wrapper--btn' 
              >
             <FontAwesomeIcon
                 icon={faChevronRight}
               />
+            </div>
+            </div>
+            <div className='product__show--carousel--dots'>
+                {data.imgSource.map((item, index) => <ImageDot active={index === count} ></ImageDot>)}
             </div>
         </div>
         <div className="product__show--buy">

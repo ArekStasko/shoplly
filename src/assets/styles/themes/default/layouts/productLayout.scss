@@ -20,34 +20,60 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       box-shadow: -21px 18px 48px -23px rgba(0, 0, 0, 0.75);
       border-radius: 6px;
 
-      img {
-        width: 80%;
-        height: 80%;
-        border-radius: 6px;
+      &--wrapper{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+
+        img {
+            width: 80%;
+            height: 80%;
+            border-radius: 6px;
+          }
+    
+          &--btn{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #6c63ff;
+            color: #6c63ff;
+            width: 30px;
+            height: 30px;  
+            border-radius: 100px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 300ms ease-in-out;
+    
+            &:hover{
+                background-color: #6c63ff;
+                color: #ffffff;
+                transform: scale(1.1);
+            }
+          }
       }
 
-      &--btn{
+      &--dots{
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 1px solid #6c63ff;
-        color: #6c63ff;
-        width: 30px;
-        height: 30px;  
-        border-radius: 100px;
-        margin: 5px;
-        cursor: pointer;
-        transition: all 300ms ease-in-out;
+        margin-top: -30px;
+        width: 100%;
 
-        &:hover{
-            background-color: #6c63ff;
-            color: #ffffff;
-            transform: scale(1.1);
+        div{
+            border: 1px solid #6c63ff;
+            border-radius: 30px;
+            width: 15px;
+            height: 15px;
+            margin: 5px;
+            transition: all 300ms ease-in-out;
         }
-      }
+    }
     }
 
     &--buy {
