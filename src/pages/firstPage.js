@@ -1,12 +1,6 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import { test } from '../actions/index'
+import React from 'react'
 
 const FirstPage = (props) => {
-
-useEffect(()=>{
-  props.test()
-})
 
     return(
         <div>
@@ -14,10 +8,4 @@ useEffect(()=>{
         </div>
     )
 }
-
-const mapDispatchToProps = (dispatch) => ({
-  test: () => 
-   dispatch(test()),
-})
-
-export default connect(null, mapDispatchToProps)(FirstPage);
+export default FirstPage;

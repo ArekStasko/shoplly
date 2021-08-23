@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ProductsCategories } from "../data/login_slides";
 import styled from "styled-components";
+import ShoppingCart from '../components/shoppingCart'
 
 const PriceRange = styled.input`
   border: 2px solid ${({ error }) => (error ? "#ff0000" : "#b6b2b2")};
@@ -26,7 +27,7 @@ class Products extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productsData: this.props.store.items,
+      productsData: this.props.items,
       place: "",
       min: "",
       max: "",
@@ -58,11 +59,11 @@ class Products extends React.Component {
   filterFunction = () => {
     let filteredData =
       this.state.max && this.state.min
-        ? this.props.store.items.filter(
+        ? this.props.items.filter(
             (item) =>
               item.price >= this.state.min && item.price <= this.state.max
           )
-        : this.props.store.items;
+        : this.props.items;
 
     if (this.state.sortValue === "highLow") {
       filteredData.sort((a, b) => b.price - a.price);
@@ -80,10 +81,10 @@ class Products extends React.Component {
     isValueIn === -1 ? newCat.push(choosenItem) : newCat.splice(isValueIn, 1);
 
     const filteredData = newCat.length
-      ? this.props.store.items.filter(
+      ? this.props.items.filter(
           (item) => newCat.indexOf(item.subCategory.toLowerCase()) !== -1
         )
-      : this.props.store.items;
+      : this.props.items;
     this.setState({ subCategory: newCat, productsData: filteredData });
   };
 
@@ -98,6 +99,7 @@ class Products extends React.Component {
 
     return (
       <div className="products">
+        <ShoppingCart />
         <CategoryNav
           hide={this.state.hide}
           onMouseLeave={() => this.setState({ category: "" })}
@@ -229,7 +231,7 @@ class Products extends React.Component {
                   <button onClick={this.filterFunction}>Filter</button>
                   <button
                     onClick={() =>
-                      this.setState({ productsData: this.props.store.items })
+                      this.setState({ productsData: this.props.items })
                     }
                   >
                     Clear Filter
@@ -245,6 +247,6 @@ class Products extends React.Component {
   }
 }
 
-const mapStateToProps = (store) => ({ store });
+const mapStateToProps = ({items,  cart }) => ({ items, cart });
 
 export default connect(mapStateToProps)(Products);

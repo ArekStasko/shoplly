@@ -254,15 +254,15 @@ const initialState = {
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [],
+  whitelist: ['cart'],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "TEST":
-      console.log("reducer test", state);
+    case "ADD_TO_CART":
       return {
         ...state,
+        cart: action.newCart
       };
     default:
       return state;

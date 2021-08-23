@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { addToCart } from '../actions/index'
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,8 +34,19 @@ const ConditionInfo = styled.div`
 const ProductLayout = (props) => {
   let [count, setCount] = useState(0)  
   const { id } = useParams();
-  const data = props.store.items.find((item) => item.id === id);
-  const user = props.store.userExample;
+  const data = props.items.find((item) => item.id === id);
+  const user = props.userExample
+
+
+  const addProduct = () => {
+    let newCart = props.cart ? props.cart : []
+    let inCart = (newCart.filter(item => item.id === data.id).length > 0 )    
+    
+    if(!inCart){
+      newCart.push(data)
+      props.addToCart(newCart)
+    }
+  }
   
   return (
     <div className="product">
@@ -102,7 +114,8 @@ const ProductLayout = (props) => {
             )}
           </div>
           <p></p>
-          <div className="product__show--buy--btn">Buy</div>
+          <button onClick={addProduct} className="product__show--buy--cartBtn">Add to shopping cart</button>
+          <button className="product__show--buy--btn">Buy now</button>
         </div>
       </div>
       <div className="product__details">
@@ -163,6 +176,10 @@ const ProductLayout = (props) => {
   );
 };
 
-const mapStateToProps = (store) => ({ store });
+const mapStateToProps = ({ items, userExample,  cart }) => ({ items, userExample, cart });
 
-export default connect(mapStateToProps)(ProductLayout);
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: cart => dispatch(addToCart(cart))
+ })
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductLayout);

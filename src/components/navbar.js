@@ -32,8 +32,6 @@ const Navbar = () => {
     prevScrollRange = scrollRange
   }
 
-  console.log(window)
-
   return (
     <Nav
      hide={hide} className="navbar">
