@@ -6,25 +6,35 @@ import {
     faShoppingCart,
     faTimes
  } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const ShoppingCart = ({ cart }) => {
   const [show, setShow] = useState(false);
+
+  let totalPrice = cart.reduce((a,b)=>(a + b.price),0)
+
   return (
-    <div onClick={()=>setShow(!show)} className="cart">
+      <div className='cart' >
+    <div onClick={()=>setShow(!show)} className="cart__icon">
       {cart.length > 0 ? (
-        <div className="cart__count">{cart.length}</div>
+        <div className="cart__icon--count">{cart.length}</div>
       ) : null}
       <FontAwesomeIcon icon={faShoppingCart} />
-      {show ? (
+    </div>
+    {show ? (
         <div className="cart__elements">
           {cart.map(item => (
              <div className="cart__elements--element" >
             <img alt="elementImg" src={item.imgSource[0]} />
-            <p>{item.title}</p>
+            <Link to={`products/${item.id}`} className="cart__elements--element--link">{item.title}</Link>
+            <p>{item.price}</p>
             <button><FontAwesomeIcon icon={faTimes}/></button>
              </div>
           ))}
+          <p className="cart__elements--totalPrice" >Total price: {totalPrice} $</p>
+          <button className="cart__elements--btn">Buy</button>
         </div>
+        
       ) : null}
     </div>
   );
