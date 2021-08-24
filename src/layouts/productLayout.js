@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addToCart } from '../actions/index'
+import { EditCart } from '../actions/index'
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -44,7 +44,7 @@ const ProductLayout = (props) => {
     
     if(!inCart){
       newCart.push(data)
-      props.addToCart(newCart)
+      props.EditCart(newCart)
     }
   }
   
@@ -179,7 +179,7 @@ const ProductLayout = (props) => {
 const mapStateToProps = ({ items, userExample,  cart }) => ({ items, userExample, cart });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: cart => dispatch(addToCart(cart))
+  EditCart: cart => dispatch(EditCart(cart))
  })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductLayout);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addToCart } from "../actions/index";
+import { EditCart } from "../actions/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
     faShoppingCart,
@@ -8,31 +8,47 @@ import {
  } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const ShoppingCart = ({ cart }) => {
+const ShoppingCart = (props) => {
   const [show, setShow] = useState(false);
 
-  let totalPrice = cart.reduce((a,b)=>(a + b.price),0)
+  let totalPrice = props.cart.reduce((a,b)=>(a + b.price),0)
+
+  const deleteElement = (element) => {
+    let newCart = props.cart;
+    let inCart = newCart.filter(item => item.id !== element.id)
+    props.EditCart(inCart)
+    }
 
   return (
       <div className='cart' >
     <div onClick={()=>setShow(!show)} className="cart__icon">
-      {cart.length > 0 ? (
-        <div className="cart__icon--count">{cart.length}</div>
+      {props.cart.length > 0 ? (
+        <div className="cart__icon--count">{props.cart.length}</div>
       ) : null}
       <FontAwesomeIcon icon={faShoppingCart} />
     </div>
     {show ? (
         <div className="cart__elements">
-          {cart.map(item => (
+          {props.cart.length > 0 ?
+          <>
+          {
+           props.cart.map(item => (
              <div className="cart__elements--element" >
             <img alt="elementImg" src={item.imgSource[0]} />
             <Link to={`products/${item.id}`} className="cart__elements--element--link">{item.title}</Link>
             <p>{item.price}</p>
-            <button><FontAwesomeIcon icon={faTimes}/></button>
+            <button onClick={()=>deleteElement(item)}><FontAwesomeIcon icon={faTimes}/></button>
              </div>
           ))}
           <p className="cart__elements--totalPrice" >Total price: {totalPrice} $</p>
           <button className="cart__elements--btn">Buy</button>
+          </>
+          : (
+              <div className="cart__elements--noItems">
+              <p>No Items</p>
+              </div>
+          )
+        }
         </div>
         
       ) : null}
@@ -43,7 +59,7 @@ const ShoppingCart = ({ cart }) => {
 const mapStateToProps = ({ cart }) => ({ cart });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (cart) => dispatch(addToCart(cart)),
+  EditCart: (cart) => dispatch(EditCart(cart)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);
