@@ -224,8 +224,6 @@ const initialState = {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean quis ex ligula. Aenean quis vehicula nisi. Nullam ac semper diam, non suscipit tortor. Quisque quis purus imperdiet, aliquam est maximus, lobortis mi.",
       price: 39.99,
-      count: 13,
-      rate: 4,
       id: "10",
       place: "Zamosc",
       category: "electronics",
