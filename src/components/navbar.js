@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPlusCircle,
   faTimes,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
@@ -62,8 +61,11 @@ const Navbar = () => {
         <Link className="navbar__links--link" to="/register">
           Register
         </Link>
-        <Link to="/products/add">
-          <FontAwesomeIcon className="navbar__links--add" icon={faPlusCircle} />
+        <Link 
+        className='navbar__links--btn'
+        to="/products/add"
+        >
+         Add product
         </Link>
       </NavLinks>
     </Nav>
