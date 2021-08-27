@@ -1,5 +1,12 @@
 import React from "react";
 import { ProductsCategories } from "../data/login_slides";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+
+const ImageWrapper = styled.label`
+  flex-direction: ${({ uploaded }) => (uploaded ? "row" : "column")};
+`;
 
 class AddProducts extends React.Component {
   constructor() {
@@ -13,18 +20,59 @@ class AddProducts extends React.Component {
   }
 
   imageUpload = e => {
-      const uploadImages =  e.target.files
-      this.setState({
-          images: [...this.state.images, ...Object.values(uploadImages) ]
-      })
+    const uploadImages = e.target.files;
+    this.setState({
+      images: [...this.state.images, ...Object.values(uploadImages)],
+    });
+  };
+
+  imageDelete = (e, elementIndex) => {
+   let newArray = this.state.images.filter((item,index)=>index !== elementIndex)
+   this.setState({
+    images: newArray,
+  });
   }
 
   render() {
-console.log(this.state.images)
+    console.log(this.state.images);
     return (
       <div className="addForm">
         <div className="addForm__photos">
-            <input type='file' onChange={e=>this.imageUpload(e)} multiple />
+          <input
+            id="add-product-image"
+            type="file"
+            onChange={(e) => this.imageUpload(e)}
+            multiple
+          />
+          <ImageWrapper
+            uploaded={this.state.images.length > 0}
+            className="addForm__photos--addPhoto"
+            htmlFor="add-product-image"
+          >
+            {this.state.images.length > 0 ? (
+              this.state.images.map((item, index) => (
+                <div>
+                  <span
+                  onClick={e=>this.imageDelete(e, index)}
+                  >
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                  <img
+                    src={URL.createObjectURL(item)}
+                    alt={item.name}
+                    key={index}
+                  />
+                </div>
+              ))
+            ) : (
+              <>
+                <span className="addForm__photos--addPhoto--icon">
+                  <FontAwesomeIcon icon={faImages} />
+                </span>
+                <span>Choose images</span>
+              </>
+            )}
+          </ImageWrapper>
         </div>
         <div className="addForm__wrapper">
           <form className="addForm__wrapper--form">
