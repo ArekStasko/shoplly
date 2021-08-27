@@ -8,14 +8,24 @@ class AddProducts extends React.Component {
       category: "",
       subCategory: "",
       condition: "",
+      images: [],
     };
   }
 
-  render() {
+  imageUpload = e => {
+      const uploadImages =  e.target.files
+      this.setState({
+          images: [...this.state.images, ...Object.values(uploadImages) ]
+      })
+  }
 
+  render() {
+console.log(this.state.images)
     return (
       <div className="addForm">
-        <div className="addForm__photos">Photos section</div>
+        <div className="addForm__photos">
+            <input type='file' onChange={e=>this.imageUpload(e)} multiple />
+        </div>
         <div className="addForm__wrapper">
           <form className="addForm__wrapper--form">
             <div className="addForm__wrapper--form--title">
