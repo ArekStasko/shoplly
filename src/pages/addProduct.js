@@ -79,21 +79,39 @@ class AddProducts extends React.Component {
         </div>
         <div className="addForm__wrapper">
           <form className="addForm__wrapper--form">
+
+            <div className='form-section'>
+
             <div className="addForm__wrapper--form--title">
               <label htmlFor="product-title">Product title:</label>
               <input className="basic-input" id="product-title" type="text" />
             </div>
-            <div className="addForm__wrapper--form--place">
+            <div className="addForm__wrapper--form--description">
+              <label htmlFor="product-description">Product description</label>
+              <textarea id="product-description"></textarea>
+            </div>
+            <div className="addForm__wrapper--form--contact">
               <div>
+                <label htmlFor="product_phone-number">
+                  Phone number to contact
+                </label>
+                <input
+                  className="basic-input"
+                  id="product_phone-number"
+                  type="text"
+                />
+              </div>
+              <div>
+                <label htmlFor="product_email">Email to contact</label>
+                <input className="basic-input" id="product_email" type="text" />
+              </div>
+            </div>
+            </div>
+
+            <div className='form-section'>
+            <div className="addForm__wrapper--form--place">
                 <label htmlFor="product-place">Place of product</label>
                 <input className="basic-input" id="product-place" type="text" />
-              </div>
-              <div>
-                <label htmlFor="product_place-checkbox">
-                  Product place is the same as yours :
-                </label>
-                <input id="product_place-checkbox" type="checkbox" />
-              </div>
             </div>
             <div className="addForm__wrapper--form--category">
               <div>
@@ -166,26 +184,8 @@ class AddProducts extends React.Component {
                 </select>
               </div>
             </div>
-            <div className="addForm__wrapper--form--description">
-              <label htmlFor="product-description">Product description</label>
-              <textarea id="product-description"></textarea>
-            </div>
-            <div className="addForm__wrapper--form--contact">
-              <div>
-                <label htmlFor="product_phone-number">
-                  Phone number to contact
-                </label>
-                <input
-                  className="basic-input"
-                  id="product_phone-number"
-                  type="text"
-                />
-              </div>
-              <div>
-                <label htmlFor="product_email">Email to contact</label>
-                <input className="basic-input" id="product_email" type="text" />
-              </div>
-            </div>
+            <button>Buy</button>
+        </div>
           </form>
         </div>
       </div>
