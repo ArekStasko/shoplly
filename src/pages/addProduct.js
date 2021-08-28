@@ -2,11 +2,11 @@ import React from "react";
 import { ProductsCategories } from "../data/login_slides";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
+import styled from 'styled-components'
 
-const ImageWrapper = styled.label`
-  flex-direction: ${({ uploaded }) => (uploaded ? "row" : "column")};
-`;
+const AddedImages = styled.div`
+justify-content: ${({images}) => (images?'flex-start':'center')}
+`
 
 class AddProducts extends React.Component {
   constructor() {
@@ -17,9 +17,10 @@ class AddProducts extends React.Component {
       condition: "",
       images: [],
     };
+    this.imagesInput = React.createRef(null);
   }
 
-  imageUpload = e => {
+  imageUpload = (e) => {
     const uploadImages = e.target.files;
     this.setState({
       images: [...this.state.images, ...Object.values(uploadImages)],
@@ -27,14 +28,15 @@ class AddProducts extends React.Component {
   };
 
   imageDelete = (e, elementIndex) => {
-   let newArray = this.state.images.filter((item,index)=>index !== elementIndex)
-   this.setState({
-    images: newArray,
-  });
-  }
+    let newArray = this.state.images.filter(
+      (item, index) => index !== elementIndex
+    );
+    this.setState({
+      images: newArray,
+    });
+  };
 
   render() {
-    console.log(this.state.images);
     return (
       <div className="addForm">
         <div className="addForm__photos">
@@ -42,37 +44,38 @@ class AddProducts extends React.Component {
             id="add-product-image"
             type="file"
             onChange={(e) => this.imageUpload(e)}
+            ref={this.imagesInput}
             multiple
           />
-          <ImageWrapper
+          <label
             uploaded={this.state.images.length > 0}
             className="addForm__photos--addPhoto"
             htmlFor="add-product-image"
           >
-            {this.state.images.length > 0 ? (
-              this.state.images.map((item, index) => (
-                <div>
-                  <span
-                  onClick={e=>this.imageDelete(e, index)}
-                  >
-                    <FontAwesomeIcon icon={faTimes} />
-                  </span>
-                  <img
-                    src={URL.createObjectURL(item)}
-                    alt={item.name}
-                    key={index}
-                  />
-                </div>
-              ))
-            ) : (
-              <>
-                <span className="addForm__photos--addPhoto--icon">
-                  <FontAwesomeIcon icon={faImages} />
-                </span>
-                <span>Choose images</span>
-              </>
-            )}
-          </ImageWrapper>
+            <span className="addForm__photos--addPhoto--icon">
+              <FontAwesomeIcon icon={faImages} />
+            </span>
+            <span>Choose images</span>
+          </label>
+          <AddedImages 
+          images={this.state.images.length > 0}
+          className="addForm__photos--addedImages"
+          >
+            {this.state.images.length > 0
+              ? this.state.images.map((item, index) => (
+                  <div>
+                    <span onClick={(e) => this.imageDelete(e, index)}>
+                      <FontAwesomeIcon icon={faTimes} />
+                    </span>
+                    <img
+                      src={URL.createObjectURL(item)}
+                      alt={item.name}
+                      key={index}
+                    />
+                  </div>
+                ))
+              : <p>No photos</p>}
+          </AddedImages>
         </div>
         <div className="addForm__wrapper">
           <form className="addForm__wrapper--form">
