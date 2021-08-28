@@ -15,6 +15,12 @@ class AddProducts extends React.Component {
       category: "",
       subCategory: "",
       condition: "",
+      phoneNumber: "",
+      email: "",
+      place: "",
+      description: "",
+      shipment: false,
+      negotiations: false,
       images: [],
     };
     this.imagesInput = React.createRef(null);
@@ -35,6 +41,18 @@ class AddProducts extends React.Component {
       images: newArray,
     });
   };
+
+  setInfo = e => {
+      const element = e.target
+      this.setState({
+          [element.name]: element.value
+      })
+  }
+
+  submitFunction = e => {
+      e.preventDefault()
+      console.log(this.state)
+  }
 
   render() {
     return (
@@ -78,17 +96,23 @@ class AddProducts extends React.Component {
           </AddedImages>
         </div>
         <div className="addForm__wrapper">
-          <form className="addForm__wrapper--form">
-
+          <form
+          onSubmit={e=>this.submitFunction(e)}
+          className="addForm__wrapper--form">
             <div className='form-section'>
-
             <div className="addForm__wrapper--form--title">
               <label htmlFor="product-title">Product title:</label>
-              <input className="basic-input" id="product-title" type="text" />
+              <input 
+              onChange={e=>this.setInfo(e)}
+              name='title'
+              className="basic-input" id="product-title" type="text" />
             </div>
             <div className="addForm__wrapper--form--description">
               <label htmlFor="product-description">Product description</label>
-              <textarea id="product-description"></textarea>
+              <textarea 
+              onChange={e=>this.setInfo(e)}
+              name='description'
+              id="product-description"></textarea>
             </div>
             <div className="addForm__wrapper--form--contact">
               <div>
@@ -96,6 +120,8 @@ class AddProducts extends React.Component {
                   Phone number to contact
                 </label>
                 <input
+                  name='phoneNumber'
+                  onChange={e=>this.setInfo(e)}
                   className="basic-input"
                   id="product_phone-number"
                   type="text"
@@ -103,7 +129,10 @@ class AddProducts extends React.Component {
               </div>
               <div>
                 <label htmlFor="product_email">Email to contact</label>
-                <input className="basic-input" id="product_email" type="text" />
+                <input 
+                onChange={e=>this.setInfo(e)}
+                name='email'
+                className="basic-input" id="product_email" type="text" />
               </div>
             </div>
             </div>
@@ -111,7 +140,10 @@ class AddProducts extends React.Component {
             <div className='form-section'>
             <div className="addForm__wrapper--form--place">
                 <label htmlFor="product-place">Place of product</label>
-                <input className="basic-input" id="product-place" type="text" />
+                <input
+                onChange={e=>this.setInfo(e)}
+                name='place'
+                className="basic-input" id="product-place" type="text" />
             </div>
             <div className="addForm__wrapper--form--category">
               <div>
@@ -159,12 +191,12 @@ class AddProducts extends React.Component {
             </div>
             <div className="addForm__wrapper--form--additional">
               <div>
-                <label htmlFor="product-ship">Shimpent</label>
-                <input id="product-ship" type="checkbox" />
+                <label htmlFor="product-ship">Shipment</label>
+                <input onChange={e=>this.setState({shipment: e.target.checked})} id="product-ship" type="checkbox" />
               </div>
               <div>
                 <label htmlFor="product-negotiation">Negotiations</label>
-                <input id="product-negotiation" type="checkbox" />
+                <input onChange={e=>this.setState({negotiations: e.target.checked})} name='negotiations' id="product-negotiation" type="checkbox" />
               </div>
               <div>
                 <label htmlFor="product-condition">Product condition</label>
@@ -184,7 +216,9 @@ class AddProducts extends React.Component {
                 </select>
               </div>
             </div>
-            <button>Buy</button>
+            <button
+            type='submit'
+            >Buy</button>
         </div>
           </form>
         </div>
