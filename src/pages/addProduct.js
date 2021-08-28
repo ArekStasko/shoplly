@@ -31,6 +31,7 @@ class AddProducts extends React.Component {
     this.setState({
       images: [...this.state.images, ...Object.values(uploadImages)],
     });
+    e.target.value = ''
   };
 
   imageDelete = (e, elementIndex) => {
