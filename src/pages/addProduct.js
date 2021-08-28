@@ -34,10 +34,10 @@ class AddProducts extends React.Component {
   };
 
   imageDelete = (e, elementIndex) => {
-    let newArray = this.state.images.filter(
+   let newArray = this.state.images.filter(
       (item, index) => index !== elementIndex
     );
-    this.setState({
+   this.setState({
       images: newArray,
     });
   };
@@ -63,6 +63,7 @@ class AddProducts extends React.Component {
             type="file"
             onChange={(e) => this.imageUpload(e)}
             ref={this.imagesInput}
+
             multiple
           />
           <label
