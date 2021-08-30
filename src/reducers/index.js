@@ -262,6 +262,9 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: action.newCart
       };
+    case "AUTHENTICATE":
+      console.log(action.data);
+    break;
     default:
       return state;
   }
