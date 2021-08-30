@@ -2,6 +2,10 @@ export const test = () => (dispatch) => {
   dispatch({ type: "TEST" })
 };
 
+export const addProduct = (details, images) => (dispatch) => {
+  dispatch({ type: 'ADD_PRODUCT', data: { details, images } })       
+}
+
 export const authenticate = (username, password) => (dispatch) => {
     dispatch({ type: 'AUTHENTICATE', data: { username, password } })       
 }

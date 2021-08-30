@@ -265,6 +265,9 @@ const rootReducer = (state = initialState, action) => {
     case "AUTHENTICATE":
       console.log(action.data);
     break;
+    case "ADD_PRODUCT":
+      console.log(action.data);
+    break;
     default:
       return state;
   }
