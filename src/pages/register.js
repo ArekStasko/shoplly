@@ -2,10 +2,14 @@ import React from "react";
 import { RegisterAdressData } from "../data/login_slides";
 import PlacePicker from "../components/placePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { connect } from "react-redux";
+import { register } from "../actions/index";
 import {
   faArrowRight,
   faArrowLeft,
   faCheck,
+  faUser,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import gsap from "gsap";
 
@@ -15,6 +19,7 @@ class Register extends React.Component {
     this.state = {
       registerStep: 0,
       password: "",
+      repeatPassword: "",
       nickname: "",
       contact: {
         number: "",
@@ -22,6 +27,7 @@ class Register extends React.Component {
         province: "",
         city: "",
       },
+      image: [],
     };
     this.loginDataWrapper = React.createRef(null);
     this.registerDataWrapper = React.createRef(null);
@@ -54,27 +60,112 @@ class Register extends React.Component {
     });
   };
 
+  imageUpload = (e) => {
+    const uploadImage = e.target.files;
+    this.setState({
+      image: [...this.state.image, ...Object.values(uploadImage)],
+    });
+    e.target.value = "";
+  };
+
+  imageDelete = (e, elementIndex) => {
+    let newArray = this.state.image.filter(
+      (item, index) => index !== elementIndex
+    );
+    this.setState({
+      image: newArray,
+    });
+  };
+
+  setInfo = (e) => {
+    const element = e.target;
+    this.setState({
+      contact: {
+        ...this.state.contact,
+        [element.name]: element.value,
+      },
+    });
+  };
+
+  setPass = (e) => {
+    const element = e.target;
+    this.setState({
+      [element.name]: element.value,
+    });
+  };
+
+  registerSubmit = (e) => {
+    e.preventDefault();
+    const data = this.state;
+    this.props.register(data.nickname, data.password, data.contact, data.image);
+  };
+
   render() {
     return (
       <div className="register">
+        <div className="register__photos">
+          <input
+            id="add-product-image"
+            type="file"
+            onChange={(e) => this.imageUpload(e)}
+            ref={this.imageInput}
+            multiple
+          />
+          {this.state.image.length > 0 ? (
+            this.state.image.map((item, index) => (
+              <div className="register__photos--image" key={index}>
+                <div>
+                  <span onClick={(e) => this.imageDelete(e, index)}>
+                    <FontAwesomeIcon icon={faTimes} />
+                  </span>
+                  <img
+                    src={URL.createObjectURL(item)}
+                    alt={item.name}
+                    key={index}
+                  />
+                </div>
+              </div>
+            ))
+          ) : (
+            <label
+              className="register__photos--addPhoto"
+              htmlFor="add-product-image"
+            >
+              <span className="register__photos--addPhoto--icon">
+                <FontAwesomeIcon icon={faUser} />
+              </span>
+              <span>Choose image</span>
+            </label>
+          )}
+        </div>
         {this.state.registerStep === 1 ? (
           <div
             ref={this.registerDataWrapper}
             className="register__contact-data"
           >
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
+              onSubmit={(e) => this.registerSubmit(e)}
               className="register__contact-data--form"
             >
               <div>
                 <label htmlFor="register-number">Your number</label>
-                <input id="register-number" type="number" />
+                <input
+                  value={this.state.contact.number}
+                  onChange={(e) => this.setInfo(e)}
+                  name="number"
+                  id="register-number"
+                  type="number"
+                />
               </div>
               <div>
                 <label htmlFor="register-email">Your email</label>
-                <input id="register-email" type="text" />
+                <input
+                  value={this.state.contact.email}
+                  onChange={(e) => this.setInfo(e)}
+                  name="email"
+                  id="register-email"
+                  type="text"
+                />
               </div>
               <PlacePicker
                 placeData={this.state.contact}
@@ -105,17 +196,35 @@ class Register extends React.Component {
             >
               <div>
                 <label htmlFor="register-nick">Nickname</label>
-                <input id="register-nick" type="text" />
+                <input
+                  value={this.state.nickname}
+                  onChange={(e) => this.setPass(e)}
+                  name="nickname"
+                  id="register-nick"
+                  type="text"
+                />
               </div>
               <div>
                 <label htmlFor="register-password">Password</label>
-                <input id="register-password" type="text" />
+                <input
+                  value={this.state.password}
+                  onChange={(e) => this.setPass(e)}
+                  name="password"
+                  id="register-password"
+                  type="password"
+                />
               </div>
               <div>
                 <label htmlFor="register-repPassword">
                   Repeat the password
                 </label>
-                <input id="register-repPassword" type="text" />
+                <input
+                  value={this.state.repeatPassword}
+                  onChange={(e) => this.setPass(e)}
+                  name="repeatPassword"
+                  id="register-repPassword"
+                  type="password"
+                />
               </div>
               <button type="submit">
                 <FontAwesomeIcon icon={faArrowRight} />
@@ -128,4 +237,9 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+const mapDispatchToProps = (dispatch) => ({
+  register: (username, password, contact, image) =>
+    dispatch(register(username, password, contact, image)),
+});
+
+export default connect(null, mapDispatchToProps)(Register);
