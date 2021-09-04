@@ -98,8 +98,10 @@ class Register extends React.Component {
   registerSubmit = (e) => {
     e.preventDefault();
     const data = this.state;
-    phoneNumberValidation(data.contact.number)
-    if(emailValidation(data.contact.email)){
+    if(
+      emailValidation(data.contact.email) && 
+      phoneNumberValidation(data.contact.number) 
+      ){
     this.props.register(data.nickname, data.password, data.contact, data.image);
     }
   };

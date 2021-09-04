@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const ShoppingCart = (props) => {
   const [show, setShow] = useState(false);
 
-  let totalPrice = props.cart.reduce((a,b)=>(a + b.price),0)
+  let totalPrice = props.cart ? Math.round(props.cart.reduce((a,b)=>(a + b.price),0) * 1000) / 1000 : null
 
   const deleteElement = (element) => {
     let newCart = props.cart;
@@ -22,14 +22,14 @@ const ShoppingCart = (props) => {
   return (
       <div className='cart' >
     <div onClick={()=>setShow(!show)} className="cart__icon">
-      {props.cart.length > 0 ? (
+      {props.cart ? (
         <div className="cart__icon--count">{props.cart.length}</div>
       ) : null}
       <FontAwesomeIcon icon={faShoppingCart} />
     </div>
     {show ? (
         <div className="cart__elements">
-          {props.cart.length > 0 ?
+          {props.cart ?
           <>
           {
            props.cart.map(item => (
