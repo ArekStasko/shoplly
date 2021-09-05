@@ -6,3 +6,7 @@ export const emailValidation = email => {
 export const phoneNumberValidation = number =>{
    return (number.split('').length === 9 && !number.match(/^[A-Za-z]+$/)) 
 }
+
+export const repeatPassword = (firstPassword, secondPassword) =>{
+    return firstPassword === secondPassword
+ }

@@ -4,7 +4,7 @@ import PlacePicker from "../components/placePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import { register } from "../actions/index";
-import { emailValidation, phoneNumberValidation } from "../validation";
+import { emailValidation, phoneNumberValidation, repeatPassword } from "../validation";
 import {
   faArrowRight,
   faArrowLeft,
@@ -100,7 +100,8 @@ class Register extends React.Component {
     const data = this.state;
     if(
       emailValidation(data.contact.email) && 
-      phoneNumberValidation(data.contact.number) 
+      phoneNumberValidation(data.contact.number) &&
+      repeatPassword(data.password, data.repeatPassword)
       ){
     this.props.register(data.nickname, data.password, data.contact, data.image);
     }
