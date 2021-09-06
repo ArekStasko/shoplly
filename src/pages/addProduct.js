@@ -4,6 +4,12 @@ import { addProduct } from "../actions/index";
 import { ProductsCategories } from "../data/login_slides";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImages, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  emailValidation,
+  phoneNumberValidation,
+  requiredValue,
+  imageValidation
+} from "../validation";
 import styled from "styled-components";
 
 const AddedImages = styled.div`
@@ -11,16 +17,16 @@ const AddedImages = styled.div`
 `;
 
 class AddProducts extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       details: {
         category: "",
         subCategory: "",
         condition: "",
-        phoneNumber: "",
-        email: "",
-        place: "",
+        phoneNumber: this.props.userExample.phoneNumber,
+        email: this.props.userExample.email,
+        place: this.props.userExample.place,
         description: "",
         shipment: false,
         negotiations: false,
@@ -30,11 +36,13 @@ class AddProducts extends React.Component {
     this.imagesInput = React.createRef(null);
   }
 
-  imageUpload = (e) => {
+  imageUpload = e => {
     const uploadImages = e.target.files;
-    this.setState({
-      images: [...this.state.images, ...Object.values(uploadImages)],
-    });
+    if(imageValidation(uploadImages)){
+      this.setState({
+        images: [...this.state.images, uploadImages[0]],
+      });
+    }
     e.target.value = "";
   };
 
@@ -59,19 +67,20 @@ class AddProducts extends React.Component {
 
   submitFunction = (e) => {
     e.preventDefault();
-    this.props.addProduct(this.state.details, this.state.images);
-    /*
-      const data = Object.values(this.state)
-      let result = false
-      for(let i=0; i<data.length; i++){
-        result = data[i]?true:false;
-      }
-      result ? (
-        console.log('fill the form')
-      ) : (
-        console.log(this.state)
-      )
-      */
+    const data = this.state;
+    if (
+      requiredValue(
+        data.details.description,
+        data.details.place,
+        data.details.subCategory,
+        data.details.category
+      ) && 
+      emailValidation(this.state.details.email) &&
+      phoneNumberValidation(this.state.details.phoneNumber) && 
+      this.state.images.length <= 3
+    ) {
+      this.props.addProduct(this.state.details, this.state.images);
+    }
   };
 
   render() {
@@ -148,6 +157,7 @@ class AddProducts extends React.Component {
                   <input
                     name="phoneNumber"
                     onChange={(e) => this.setInfo(e)}
+                    value={this.state.details.phoneNumber}
                     className="basic-input"
                     id="product_phone-number"
                     type="text"
@@ -157,6 +167,7 @@ class AddProducts extends React.Component {
                   <label htmlFor="product_email">Email to contact</label>
                   <input
                     onChange={(e) => this.setInfo(e)}
+                    value={this.state.details.email}
                     name="email"
                     className="basic-input"
                     id="product_email"
@@ -171,6 +182,7 @@ class AddProducts extends React.Component {
                 <label htmlFor="product-place">Place of product</label>
                 <input
                   onChange={(e) => this.setInfo(e)}
+                  value={this.state.details.place}
                   name="place"
                   className="basic-input"
                   id="product-place"
@@ -186,6 +198,7 @@ class AddProducts extends React.Component {
                         details: {
                           ...this.state.details,
                           category: e.target.value,
+                          subCategory: ProductsCategories[0][e.target.value][0],
                         },
                       });
                     }}
@@ -297,4 +310,6 @@ const mapDispatchToProps = (dispatch) => ({
   addProduct: (details, images) => dispatch(addProduct(details, images)),
 });
 
-export default connect(null, mapDispatchToProps)(AddProducts);
+const mapStateToProps = ({ userExample }) => ({ userExample });
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProducts);

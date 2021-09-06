@@ -24,7 +24,7 @@ const initialState = {
       ship: false,
       negotiations: false,
       condition: "Used",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -48,7 +48,7 @@ const initialState = {
       ship: true,
       negotiations: true,
       condition: "New",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -72,7 +72,7 @@ const initialState = {
       ship: false,
       negotiations: false,
       condition: "New",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -96,7 +96,7 @@ const initialState = {
       ship: true,
       negotiations: true,
       condition: "Damaged",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -120,7 +120,7 @@ const initialState = {
       ship: false,
       negotiations: false,
       condition: "Used",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -144,7 +144,7 @@ const initialState = {
       ship: true,
       negotiations: true,
       condition: "Used",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -168,7 +168,7 @@ const initialState = {
       ship: false,
       negotiations: false,
       condition: "New",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -192,7 +192,7 @@ const initialState = {
       ship: true,
       negotiations: true,
       condition: "New",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -216,7 +216,7 @@ const initialState = {
       ship: false,
       negotiations: false,
       condition: "Damaged",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
     {
@@ -238,7 +238,7 @@ const initialState = {
       ship: true,
       negotiations: true,
       condition: "Used",
-      phoneNumber: "123-456-789",
+      phoneNumber: "123456789",
       userEmail: "example@omail.com",
     },
   ],
@@ -246,6 +246,8 @@ const initialState = {
     userName: "Kamil",
     surname: "Nowak",
     place: "Krakow",
+    email: "kamil.nowak@gmail.com",
+    phoneNumber: "123456789",
   },
 };
 

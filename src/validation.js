@@ -10,3 +10,18 @@ export const phoneNumberValidation = number =>{
 export const repeatPassword = (firstPassword, secondPassword) =>{
     return firstPassword === secondPassword
  }
+
+export const imageValidation = img => {
+    return img[0]['type'].split('/')[0] === 'image'
+}
+
+export const requiredValue = (...value) => {
+    const checkValues = value
+    for(let i=0; i<checkValues.length; i++){
+        if(checkValues[i].length === 0) {
+            console.log(checkValues)
+            return false
+        }
+    }
+    return true
+}

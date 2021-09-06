@@ -4,7 +4,13 @@ import PlacePicker from "../components/placePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import { register } from "../actions/index";
-import { emailValidation, phoneNumberValidation, repeatPassword } from "../validation";
+import {
+  emailValidation,
+  phoneNumberValidation,
+  repeatPassword,
+  requiredValue,
+  imageValidation,
+} from "../validation";
 import {
   faArrowRight,
   faArrowLeft,
@@ -63,9 +69,11 @@ class Register extends React.Component {
 
   imageUpload = (e) => {
     const uploadImage = e.target.files;
-    this.setState({
-      image: [...this.state.image, ...Object.values(uploadImage)],
-    });
+    if (imageValidation(uploadImage)) {
+      this.setState({
+        image: [...this.state.image, ...Object.values(uploadImage)],
+      });
+    }
     e.target.value = "";
   };
 
@@ -98,12 +106,23 @@ class Register extends React.Component {
   registerSubmit = (e) => {
     e.preventDefault();
     const data = this.state;
-    if(
-      emailValidation(data.contact.email) && 
+    if (
+      requiredValue(
+        data.nickname,
+        data.password,
+        data.contact.city,
+        data.contact.province
+      ) &&
+      emailValidation(data.contact.email) &&
       phoneNumberValidation(data.contact.number) &&
       repeatPassword(data.password, data.repeatPassword)
-      ){
-    this.props.register(data.nickname, data.password, data.contact, data.image);
+    ) {
+      this.props.register(
+        data.nickname,
+        data.password,
+        data.contact,
+        data.image
+      );
     }
   };
 
@@ -116,7 +135,6 @@ class Register extends React.Component {
             type="file"
             onChange={(e) => this.imageUpload(e)}
             ref={this.imageInput}
-            multiple
           />
           {this.state.image.length > 0 ? (
             this.state.image.map((item, index) => (

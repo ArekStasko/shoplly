@@ -3,6 +3,7 @@ import { loginText } from "../data/login_slides";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { authenticate } from '../actions/index'
+import { requiredValue } from "../validation";
 import gsap from "gsap";
 
 class Login extends React.Component {
@@ -53,7 +54,7 @@ class Login extends React.Component {
   loginAction = e => {
     e.preventDefault();
     const data = this.state
-    if(data.password !== '' && data.username !== '') {
+    if(requiredValue(data.password, data.username)) {
       this.props.authenticate(data.username, data.password)
     }
   };
