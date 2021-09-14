@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FirstPage = (props) => {
+const FirstPage = () => {
 
     return(
         <div>
@@ -8,4 +8,7 @@ const FirstPage = (props) => {
         </div>
     )
 }
+
+
+
 export default FirstPage;

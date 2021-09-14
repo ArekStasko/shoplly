@@ -34,7 +34,7 @@ const ConditionInfo = styled.div`
 const ProductLayout = (props) => {
   let [count, setCount] = useState(0)  
   const { id } = useParams();
-  const data = props.items.find((item) => item.id === id);
+  const data = props.items.find(item => item._id === id);
   const user = props.userExample
 
 
@@ -61,7 +61,7 @@ const ProductLayout = (props) => {
                 icon={faChevronLeft}
               />
             </div>
-          <img alt="examplePhoto" src={data.imgSource[count]} />
+          <img alt="examplePhoto" src={data.images[count]} />
             <div 
              onClick={()=>count === 2 ? setCount(0) : setCount(count+1)}
              className='product__show--carousel--wrapper--btn' 

@@ -8,12 +8,12 @@ const ProductsList = (props) => {
       {props.store.length > 0 ? (
         props.store.map((item, index) => (
           <Link
-            to={`products/${item.id}`}
+            to={`products/${item._id}`}
             className="products__wrapper--element"
             key={index}
           >
             <div className="products__wrapper--element--img">
-              <img src={item.imgSource[0]} alt="example-product_photo" />
+              <img src={item.images[0]} alt="example-product_photo" />
             </div>
             <div className="products__wrapper--element--title">
               <h3>{item.title}</h3>

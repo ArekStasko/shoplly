@@ -10,6 +10,7 @@ import {
 import { ProductsCategories } from "../data/login_slides";
 import styled from "styled-components";
 import ShoppingCart from '../components/shoppingCart'
+import { getProducts } from "../actions/index";
 
 const PriceRange = styled.input`
   border: 2px solid ${({ error }) => (error ? "#ff0000" : "#b6b2b2")};
@@ -18,10 +19,7 @@ const PriceRange = styled.input`
   }
 `;
 
-const CategoryNav = styled.div`
-  transition: all 300ms ease-in-out;
-  top: ${({ hide }) => (hide ? "0px" : "90px")};
-`;
+
 
 class Products extends React.Component {
   constructor(props) {
@@ -34,11 +32,14 @@ class Products extends React.Component {
       category: "",
       sortValue: false,
       subCategory: [],
-      filter: false,
-      hide: false,
+      filter: false,      
       error: false,
       searchText: "",
     };
+  }
+
+  componentDidMount = () => {
+    this.props.getProducts()
   }
 
   priceRange = (e, type) => {
@@ -89,19 +90,14 @@ class Products extends React.Component {
   };
 
   render() {
-    let prevScrollRange = window.pageYOffset;
-
-    window.onscroll = () => {
-      let scrollRange = window.pageYOffset;
-      this.setState({ hide: !(prevScrollRange > scrollRange) });
-      prevScrollRange = scrollRange;
-    };
-
     return (
       <div className="products">
-        <ShoppingCart />
-        <CategoryNav
-          hide={this.state.hide}
+        {
+          this.props.items ? (
+<>
+
+<ShoppingCart />
+        <div
           onMouseLeave={() => this.setState({ category: "" })}
           className="products__category"
         >
@@ -240,8 +236,14 @@ class Products extends React.Component {
               ) : null}
             </>
           </div>
-        </CategoryNav>
-        <ProductsList store={this.searchFunction(this.state.productsData)} />
+        </div>
+        <ProductsList store={this.searchFunction(this.state.productsData ? this.state.productsData : this.props.items)} />
+
+</>
+          ) : (
+            <div>Loading</div>
+          )
+        }
       </div>
     );
   }
@@ -249,4 +251,8 @@ class Products extends React.Component {
 
 const mapStateToProps = ({items,  cart }) => ({ items, cart });
 
-export default connect(mapStateToProps)(Products);
+const mapDispatchToProps = dispatch => ({
+  getProducts: () => dispatch(getProducts()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
