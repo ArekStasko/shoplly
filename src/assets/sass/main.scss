@@ -22,7 +22,10 @@
 @import './components/navbar';
 @import './components/placePicker';
 @import './components/button';
+@import './components/input';
+@import './components/select';
 
 
 //layout imports
-@import './layouts/productLayout.scss';
+@import './layouts/productLayout';
+@import './layouts/productsList';

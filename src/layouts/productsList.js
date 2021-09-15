@@ -1,21 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 const ProductsList = (props) => {
   return (
-    <div className="products__wrapper">
+    <div className="products-list">
       {props.store.length > 0 ? (
         props.store.map((item, index) => (
           <Link
             to={`products/${item._id}`}
-            className="products__wrapper--element"
+            className="products-list__element"
             key={index}
           >
-            <div className="products__wrapper--element--img">
-              <img src={item.images[0]} alt="example-product_photo" />
+            <div className="products-list__product-image">
+              <img src={item.images[0]} alt="product_photo" />
             </div>
-            <div className="products__wrapper--element--title">
+            <div className="products-list__product-title">
               <h3>{item.title}</h3>
               <p>{item.place}</p>
             </div>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { EditCart } from '../actions/index'
+import { EditCart } from "../actions/index";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-faChevronLeft,
-faChevronRight
+  faChevronLeft,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 const ShipStatus = styled.div`
@@ -19,8 +19,8 @@ const KeyInfo = styled.div`
 `;
 
 const ImageDot = styled.div`
-  background-color: ${({ active }) => (active ? '#6c63ff' : 'none') }
-`
+  background-color: ${({ active }) => (active ? "#6c63ff" : "none")};
+`;
 
 const ConditionInfo = styled.div`
   background-color: ${({ condition }) =>
@@ -32,72 +32,69 @@ const ConditionInfo = styled.div`
 `;
 
 const ProductLayout = (props) => {
-  let [count, setCount] = useState(0)  
+  let [count, setCount] = useState(0);
   const { id } = useParams();
-  const data = props.items.find(item => item._id === id);
-  const user = props.userExample
-
+  const data = props.items.find((item) => item._id === id);
+  const user = props.userExample;
 
   const addProduct = () => {
-    let newCart = props.cart ? props.cart : []
-    let inCart = (newCart.filter(item => item.id === data.id).length > 0 )    
-    
-    if(!inCart){
-      newCart.push(data)
-      props.EditCart(newCart)
+    let newCart = props.cart ? props.cart : [];
+    let inCart = newCart.filter((item) => item.id === data.id).length > 0;
+
+    if (!inCart) {
+      newCart.push(data);
+      props.EditCart(newCart);
     }
-  }
-  
+  };
+
   return (
-    <div className="product">
-      <div className="product__show">
-        <div className="product__show--carousel">
-            <div className="product__show--carousel--wrapper" >
+    <main className="product">
+      <section className="product__show">
+        <article className="product__carousel">
+          <div className="product__carousel-wrapper">
             <div
-             onClick={()=>count === 0 ? setCount(2) : setCount(count-1)}
-             className='product__show--carousel--wrapper--btn'
-              >
-            <FontAwesomeIcon
-                icon={faChevronLeft}
-              />
+              onClick={() => (count === 0 ? setCount(2) : setCount(count - 1))}
+              className="btn btn--rounded"
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
             </div>
-          <img alt="examplePhoto" src={data.images[count]} />
-            <div 
-             onClick={()=>count === 2 ? setCount(0) : setCount(count+1)}
-             className='product__show--carousel--wrapper--btn' 
-             >
-            <FontAwesomeIcon
-                icon={faChevronRight}
-              />
+            <img alt="examplePhoto" src={data.images[count]} />
+            <div
+              onClick={() => (count === 2 ? setCount(0) : setCount(count + 1))}
+              className="btn btn--rounded"
+            >
+              <FontAwesomeIcon icon={faChevronRight} />
             </div>
-            </div>
-            <div className='product__show--carousel--dots'>
-                {data.imgSource.map((item, index) => <ImageDot active={index === count} ></ImageDot>)}
-            </div>
-        </div>
-        <div className="product__show--buy">
-          <div className="product__show--buy--user">
+          </div>
+          <div className="product__dots">
+            {data.imgSource.map((item, index) => (
+              <ImageDot active={index === count}></ImageDot>
+            ))}
+          </div>
+        </article>
+        <article className="product__buy">
+          <div className="product__user">
             <img alt="userExampleImage" src={data.userImgExample} />
             <h3>{data.userName}</h3>
           </div>
-          <div className="product__show--buy--about">
+          <div className="product__about">
             <p>
               On Shoplly from <span>August 2021</span>
             </p>
           </div>
-          <div className="product__show--buy--about">
+          <div className="product__about">
             <p>
               Location: <span>{data.place}</span>
             </p>
           </div>
-          <div className="product__show--buy--shipment">
+          <div className="product__shipment">
             {data.ship ? (
               <>
-                <div className="product__show--buy--shipment--status">
+                <div className="product__status">
                   <ShipStatus status={data.ship}></ShipStatus>
                   <p>Shipment available</p>
                 </div>
-                <div className="product__show--buy--shipment--info">
+                <div className="product__info">
                   <p>
                     Minimum cost: <span>5$</span>
                   </p>
@@ -107,21 +104,23 @@ const ProductLayout = (props) => {
                 </div>
               </>
             ) : (
-              <div className="product__show--buy--shipment--status">
+              <div className="product__status">
                 <ShipStatus status={data.ship}></ShipStatus>
                 <p>Shipment unavailable</p>
               </div>
             )}
           </div>
           <p></p>
-          <button onClick={addProduct} className="product__show--buy--cartBtn">Add to shopping cart</button>
-          <button className="product__show--buy--btn">Buy now</button>
-        </div>
-      </div>
-      <div className="product__details">
+          <button onClick={addProduct} className="btn btn--transparent">
+            Add to shopping cart
+          </button>
+          <button className="btn btn--background">Buy now</button>
+        </article>
+      </section>
+      <section className="product__details">
         <h1>{data.title}</h1>
         <h2>{data.price} $</h2>
-        <div className="product__details--keyInfo">
+        <article className="product__keyInfo">
           <ConditionInfo condition={data.condition.toLowerCase()}>
             <p>Condition: {data.condition}</p>
           </ConditionInfo>
@@ -148,17 +147,15 @@ const ProductLayout = (props) => {
               <p>Shipment unavailable</p>
             )}
           </KeyInfo>
-        </div>
-        <div className="product__details--description">
-          <p className="product__details--description--title">Description</p>
-          <p className="product__details--description--text">
-            {data.description}
-          </p>
-        </div>
-        <div className="product__details--line"></div>
-        <div className="product__details--contact">
-          <p className="product__details--contact--title">Contact</p>
-          <div className="product__details--contact--info">
+        </article>
+        <article className="product__description">
+          <p>Description</p>
+          <p>{data.description}</p>
+        </article>
+        <div className="product__decoration-line"></div>
+        <article className="product__contact">
+          <p className="product__contact-title">Contact</p>
+          <div className="product__contact-info">
             <div>
               <p>
                 Phone number: <span>{data.phoneNumber}</span>
@@ -170,16 +167,20 @@ const ProductLayout = (props) => {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </article>
+      </section>
+    </main>
   );
 };
 
-const mapStateToProps = ({ items, userExample,  cart }) => ({ items, userExample, cart });
+const mapStateToProps = ({ items, userExample, cart }) => ({
+  items,
+  userExample,
+  cart,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  EditCart: cart => dispatch(EditCart(cart))
- })
+  EditCart: (cart) => dispatch(EditCart(cart)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductLayout);

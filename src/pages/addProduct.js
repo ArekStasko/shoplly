@@ -8,7 +8,7 @@ import {
   emailValidation,
   phoneNumberValidation,
   requiredValue,
-  imageValidation
+  imageValidation,
 } from "../validation";
 import styled from "styled-components";
 
@@ -24,9 +24,9 @@ class AddProducts extends React.Component {
         category: "",
         subCategory: "",
         condition: "",
-        phoneNumber: this.props.userExample.phoneNumber,
-        email: this.props.userExample.email,
-        place: this.props.userExample.place,
+        phoneNumber: this.props.user.phoneNumber,
+        email: this.props.user.email,
+        place: this.props.user.place,
         description: "",
         shipment: false,
         negotiations: false,
@@ -36,9 +36,9 @@ class AddProducts extends React.Component {
     this.imagesInput = React.createRef(null);
   }
 
-  imageUpload = e => {
+  imageUpload = (e) => {
     const uploadImages = e.target.files;
-    if(imageValidation(uploadImages)){
+    if (imageValidation(uploadImages)) {
       this.setState({
         images: [...this.state.images, uploadImages[0]],
       });
@@ -74,9 +74,9 @@ class AddProducts extends React.Component {
         data.details.place,
         data.details.subCategory,
         data.details.category
-      ) && 
+      ) &&
       emailValidation(this.state.details.email) &&
-      phoneNumberValidation(this.state.details.phoneNumber) && 
+      phoneNumberValidation(this.state.details.phoneNumber) &&
       this.state.images.length <= 3
     ) {
       this.props.addProduct(this.state.details, this.state.images);
@@ -85,8 +85,8 @@ class AddProducts extends React.Component {
 
   render() {
     return (
-      <div className="addForm">
-        <div className="addForm__photos">
+      <main className="addForm">
+        <section className="addForm__images">
           <input
             id="add-product-image"
             type="file"
@@ -94,18 +94,15 @@ class AddProducts extends React.Component {
             ref={this.imagesInput}
             multiple
           />
-          <label
-            className="addForm__photos--addPhoto"
-            htmlFor="add-product-image"
-          >
-            <span className="addForm__photos--addPhoto--icon">
+          <label className="addForm__add-image" htmlFor="add-product-image">
+            <span className="addForm__add-image-icon">
               <FontAwesomeIcon icon={faImages} />
             </span>
             <span>Choose images</span>
           </label>
           <AddedImages
             images={this.state.images.length > 0}
-            className="addForm__photos--addedImages"
+            className="addForm__added-images"
           >
             {this.state.images.length > 0 ? (
               this.state.images.map((item, index) => (
@@ -124,41 +121,43 @@ class AddProducts extends React.Component {
               <p>No photos</p>
             )}
           </AddedImages>
-        </div>
-        <div className="addForm__wrapper">
+        </section>
+        <section className="addForm__wrapper">
           <form
             onSubmit={(e) => this.submitFunction(e)}
-            className="addForm__wrapper--form"
+            className="addForm__form"
           >
-            <div className="form-section">
-              <div className="addForm__wrapper--form--title">
+            <section className="addForm__form-section">
+              <div className="addForm__form-title">
                 <label htmlFor="product-title">Product title:</label>
                 <input
                   onChange={(e) => this.setInfo(e)}
                   name="title"
-                  className="basic-input"
+                  className="input"
                   id="product-title"
                   type="text"
                 />
               </div>
-              <div className="addForm__wrapper--form--description">
-                <label htmlFor="product-description">Product description</label>
+              <div className="addForm__form-description">
+                <label className="label" htmlFor="product-description">
+                  Product description
+                </label>
                 <textarea
                   onChange={(e) => this.setInfo(e)}
                   name="description"
                   id="product-description"
                 ></textarea>
               </div>
-              <div className="addForm__wrapper--form--contact">
+              <div className="addForm__form-contact">
                 <div>
-                  <label htmlFor="product_phone-number">
+                  <label className="label" htmlFor="product_phone-number">
                     Phone number to contact
                   </label>
                   <input
                     name="phoneNumber"
                     onChange={(e) => this.setInfo(e)}
                     value={this.state.details.phoneNumber}
-                    className="basic-input"
+                    className="input"
                     id="product_phone-number"
                     type="text"
                   />
@@ -169,29 +168,33 @@ class AddProducts extends React.Component {
                     onChange={(e) => this.setInfo(e)}
                     value={this.state.details.email}
                     name="email"
-                    className="basic-input"
+                    className="input"
                     id="product_email"
                     type="text"
                   />
                 </div>
               </div>
-            </div>
+            </section>
 
-            <div className="form-section">
-              <div className="addForm__wrapper--form--place">
-                <label htmlFor="product-place">Place of product</label>
+            <section className="addForm__form-section">
+              <div className="addForm__form-place">
+                <label className="label" htmlFor="product-place">
+                  Place of product
+                </label>
                 <input
                   onChange={(e) => this.setInfo(e)}
                   value={this.state.details.place}
                   name="place"
-                  className="basic-input"
+                  className="input"
                   id="product-place"
                   type="text"
                 />
               </div>
-              <div className="addForm__wrapper--form--category">
+              <div className="addForm__form-category">
                 <div>
-                  <label htmlFor="product-category">Product category</label>
+                  <label className="label" htmlFor="product-category">
+                    Product category
+                  </label>
                   <select
                     onChange={(e) => {
                       this.setState({
@@ -203,7 +206,7 @@ class AddProducts extends React.Component {
                       });
                     }}
                     value={this.state.details.category}
-                    className="basic-select"
+                    className="select"
                     id="product-category"
                   >
                     {Object.entries(ProductsCategories[0]).map((item) => (
@@ -214,7 +217,7 @@ class AddProducts extends React.Component {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="product-subcategory">
+                  <label className="label" htmlFor="product-subcategory">
                     Product subcategory
                   </label>
                   <select
@@ -227,7 +230,7 @@ class AddProducts extends React.Component {
                       });
                     }}
                     value={this.state.details.subCategory}
-                    className="basic-select"
+                    className="select"
                     id="product-subcategory"
                   >
                     {this.state.details.category ? (
@@ -244,9 +247,11 @@ class AddProducts extends React.Component {
                   </select>
                 </div>
               </div>
-              <div className="addForm__wrapper--form--additional">
+              <div className="addForm__form-additional">
                 <div>
-                  <label htmlFor="product-ship">Shipment</label>
+                  <label className="label" htmlFor="product-ship">
+                    Shipment
+                  </label>
                   <input
                     onChange={(e) =>
                       this.setState({
@@ -261,7 +266,9 @@ class AddProducts extends React.Component {
                   />
                 </div>
                 <div>
-                  <label htmlFor="product-negotiation">Negotiations</label>
+                  <label className="label" htmlFor="product-negotiation">
+                    Negotiations
+                  </label>
                   <input
                     onChange={(e) =>
                       this.setState({
@@ -277,7 +284,9 @@ class AddProducts extends React.Component {
                   />
                 </div>
                 <div>
-                  <label htmlFor="product-condition">Product condition</label>
+                  <label className="label" htmlFor="product-condition">
+                    Product condition
+                  </label>
                   <select
                     onChange={(e) =>
                       this.setState({
@@ -288,7 +297,7 @@ class AddProducts extends React.Component {
                       })
                     }
                     value={this.state.details.condition}
-                    className="basic-select"
+                    className="select"
                     id="product-condition"
                   >
                     <option value="new">New</option>
@@ -297,11 +306,13 @@ class AddProducts extends React.Component {
                   </select>
                 </div>
               </div>
-              <button type="submit">Buy</button>
-            </div>
+              <button className="btn btn-background" type="submit">
+                Buy
+              </button>
+            </section>
           </form>
-        </div>
-      </div>
+        </section>
+      </main>
     );
   }
 }
