@@ -1,5 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBoxOpen
+} from "@fortawesome/free-solid-svg-icons";
 
 const ProductsList = (props) => {
   return (
@@ -22,8 +26,11 @@ const ProductsList = (props) => {
           </Link>
         ))
       ) : (
-        <div>
-          <h1>No items</h1>
+        <div className="products-list__no-items">
+          <h2>Lack of stuff</h2>
+          <FontAwesomeIcon
+                icon={faBoxOpen}
+          />
         </div>
       )}
     </div>

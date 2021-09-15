@@ -3,7 +3,7 @@ import { loginText } from "../data/login_slides";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { authenticate } from "../actions/index";
-import { requiredValue } from "../validation";
+import { requiredValue } from "../utilities/validation";
 
 class Login extends React.Component {
   constructor() {
@@ -12,24 +12,23 @@ class Login extends React.Component {
       textCount: 0,
       username: "",
       password: "",
+      intervalID: this.slideTimer,
     };
   }
 
-  slideTimer = () =>
-    setInterval(() => {
+  componentDidMount() {
+    const slideTimer = setInterval(() => {
       if (this.state.textCount === loginText.length - 1) {
         this.setState({ textCount: 0 });
       } else {
         this.setState({ textCount: this.state.textCount + 1 });
       }
     }, 3000);
-
-  componentDidMount() {
-    this.slideTimer();
+    this.setState({ intervalID: slideTimer });
   }
 
   componentWillUnmount() {
-    clearInterval(this.slideTimer());
+    clearInterval(this.state.intervalID);
   }
 
   setPass = (e) => {

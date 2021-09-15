@@ -9,7 +9,7 @@ import {
   phoneNumberValidation,
   requiredValue,
   imageValidation,
-} from "../validation";
+} from "../utilities/validation";
 import styled from "styled-components";
 
 const AddedImages = styled.div`

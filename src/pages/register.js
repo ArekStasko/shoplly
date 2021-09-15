@@ -10,7 +10,7 @@ import {
   repeatPassword,
   requiredValue,
   imageValidation,
-} from "../validation";
+} from "../utilities/validation";
 import {
   faArrowRight,
   faArrowLeft,
@@ -147,7 +147,7 @@ class Register extends React.Component {
           )}
         </section>
         {this.state.registerStep === 1 ? (
-          <div className="register__contact-wrapper">
+          <section className="register__contact-wrapper">
             <form
               onSubmit={(e) => this.registerSubmit(e)}
               className="register__contact-form"
@@ -195,9 +195,9 @@ class Register extends React.Component {
                 <FontAwesomeIcon icon={faArrowLeft} />
               </button>
             </form>
-          </div>
+          </section>
         ) : (
-          <div className="register__login-wrapper">
+          <section className="register__login-wrapper">
             <form
               className="register__login-form"
               onSubmit={(e) => {
@@ -248,7 +248,7 @@ class Register extends React.Component {
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </form>
-          </div>
+          </section>
         )}
       </main>
     );
