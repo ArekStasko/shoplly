@@ -10,7 +10,7 @@ import Register from "./pages/register";
 import ErrorPage from "./pages/error";
 import Navbar from "./components/navbar";
 import ProductLayout from "./layouts/productLayout";
-import "./assets/styles/themes/default/theme.scss";
+import "./assets/sass/main.scss";
 
 function App() {
   return (

@@ -1,0 +1,28 @@
+//abstract imports
+@import './abstracts/functions';
+@import './abstracts/mixins';
+@import './abstracts/variables';
+@import './abstracts/normalize';
+
+//base imports
+@import './base/base';
+@import './base/animations';
+@import './base/typography';
+@import './base/utilities';
+
+//pages imports
+@import './pages/addProduct';
+@import './pages/login';
+@import './pages/products';
+@import './pages/register';
+
+
+//components imports
+@import './components/cart';
+@import './components/navbar';
+@import './components/placePicker';
+@import './components/button';
+
+
+//layout imports
+@import './layouts/productLayout.scss';

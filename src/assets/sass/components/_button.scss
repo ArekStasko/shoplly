@@ -1,0 +1,33 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  width: 20rem;
+  height: 4rem;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 300ms ease-in-out;
+
+  &--transparent {
+    color: #6c63ff;
+    border: 1px solid #6c63ff;
+
+    &:hover {
+      background-color: #6c63ff;
+      color: #ffffff;
+    }
+  }
+
+  &--background {
+    background-color: #6c63ff;
+    color: #ffffff;
+    border: 1px solid #e0dbdb;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
