@@ -1,6 +1,9 @@
 import React from 'react'
+import { connect } from "react-redux";
 
-const FirstPage = () => {
+
+const FirstPage = props => {
+
 
     return(
         <div>
@@ -9,6 +12,6 @@ const FirstPage = () => {
     )
 }
 
+const mapStateToProps = ({ user }) => ({ user });
 
-
-export default FirstPage;
+export default connect(mapStateToProps)(FirstPage);

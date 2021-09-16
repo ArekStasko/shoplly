@@ -6,14 +6,11 @@ const initialState = {};
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart", "userID"],
+  whitelist: ["cart", "user"],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_PRODUCTS":
-      console.log("get");
-      break;
     case "GET_PRODUCT_SUCC":
       return{
         ...state,
@@ -21,15 +18,18 @@ const rootReducer = (state = initialState, action) => {
         action.payload.data
       }
     case "ERR":
+      console.log(action.err)
       break;
     case "ADD_TO_CART":
       return {
         ...state,
         cart: action.newCart,
       };
-    case "AUTHENTICATE":
-      console.log(action.data);
-      break;
+    case "AUTHENTICATE_SUCC":
+      return{
+        ...state,
+        user: action.payload.data
+      }
     case "ADD_PRODUCT":
       console.log(action.data);
       break;
