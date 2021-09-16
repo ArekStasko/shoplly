@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { logout } from "../actions/index";
 
 const NavLinks = styled.div`
   @media (max-width: 768px) {
@@ -11,7 +13,7 @@ const NavLinks = styled.div`
   }
 `;
 
-const Navbar = () => {
+const Navbar = (props) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -31,12 +33,26 @@ const Navbar = () => {
         <Link className="navbar__link" to="/products">
           Products
         </Link>
-        <Link className="navbar__link" to="/login">
-          Login
-        </Link>
-        <Link className="navbar__link" to="/register">
-          Register
-        </Link>
+        {props.user ? (
+          <button
+            onClick={() => {
+              props.logout();
+            }}
+            className="btn btn--small btn--background"
+            to="/login"
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link className="navbar__link" to="/login">
+              Login
+            </Link>
+            <Link className="navbar__link" to="/register">
+              Register
+            </Link>
+          </>
+        )}
         <Link className="btn btn--transparent" to="/products/add">
           Add product
         </Link>
@@ -45,4 +61,10 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = ({ user }) => ({ user });
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch(logout()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

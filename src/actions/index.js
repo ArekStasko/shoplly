@@ -3,7 +3,7 @@ const {
   REACT_APP_GET_PRODUCTS,
 //  REACT_APP_REGISTER,
   REACT_APP_LOGIN,
-//  REACT_APP_LOGOUT,
+  REACT_APP_LOGOUT,
 //  REACT_APP_GET_PRODUCT,
 //  REACT_APP_ADD_PRODUCT,
 //  REACT_APP_DELETE_PRODUCT,
@@ -36,10 +36,22 @@ export const authenticate = (username, password) => (dispatch) => {
     .then((payload) => {
       dispatch({ type: "AUTHENTICATE_SUCC", payload });
     })
-    .catch((err) => {
+    .catch(err => {
       dispatch({ type: "ERR", err });
     });
 };
+
+export const logout = () => (dispatch) => {
+  dispatch({ type: "LOGOUT_REQ" })
+  return axios
+  .post(REACT_APP_LOGOUT)
+  .then(()=>{
+    dispatch({ type: "LOGOUT_SUCC" })
+  })
+  .catch(err=>{
+    dispatch({ type: 'ERR', err })
+  })
+}
 
 export const register = (username, password, contact, image) => (dispatch) => {
   dispatch({ type: "REGISTER", data: { username, password, contact, image } });

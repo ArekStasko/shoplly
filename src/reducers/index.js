@@ -30,6 +30,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.data
       }
+    case "LOGOUT_SUCC":
+      return{
+        ...state,
+        user: null
+      }
     case "ADD_PRODUCT":
       console.log(action.data);
       break;
