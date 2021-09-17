@@ -35,6 +35,22 @@
     }
   }
 
+  &__logout-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid #6c63ff;
+    border-radius: 6px;
+    padding: 5px;
+    width: 35rem;
+
+    img{
+      width: 6rem;
+      height: 6rem;
+      border-radius: 90px;
+    }
+  }
+
   &__links {
     display: flex;
     align-items: center;

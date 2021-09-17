@@ -3,6 +3,8 @@ import { RegisterAdressData } from "../data/login_slides";
 import PlacePicker from "../components/placePicker";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { Redirect } from "react-router";
 import { register } from "../actions/index";
 import {
   emailValidation,
@@ -18,6 +20,7 @@ import {
   faUser,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import Loading from "../components/loading";
 
 class Register extends React.Component {
   constructor() {
@@ -26,7 +29,7 @@ class Register extends React.Component {
       registerStep: 0,
       password: "",
       repeatPassword: "",
-      nickname: "",
+      username: "",
       contact: {
         number: "",
         email: "",
@@ -91,34 +94,44 @@ class Register extends React.Component {
 
   registerSubmit = (e) => {
     e.preventDefault();
-    const data = this.state;
+    const userData = this.state;
     if (
       requiredValue(
-        data.nickname,
-        data.password,
-        data.contact.city,
-        data.contact.province
+        userData.username,
+        userData.password,
+        userData.contact.city,
+        userData.contact.province
       ) &&
-      emailValidation(data.contact.email) &&
-      phoneNumberValidation(data.contact.number) &&
-      repeatPassword(data.password, data.repeatPassword)
+      emailValidation(userData.contact.email) &&
+      phoneNumberValidation(userData.contact.number) &&
+      repeatPassword(userData.password, userData.repeatPassword)
     ) {
-      this.props.register(
-        data.nickname,
-        data.password,
-        data.contact,
-        data.image
-      );
+
+      const data = new FormData()
+      data.append('image', userData.image[0])
+      data.append('username', userData.username)
+      data.append('password', userData.password)
+      data.append('email', userData.contact.email)
+      data.append('phonenumber', userData.contact.number)
+      data.append('place', userData.contact.province)
+
+      this.props.register(data);
     }
   };
 
   render() {
+
+    if(this.props.user){
+      return <Redirect to='/' />
+    }
+
     return (
       <main className="register">
         <section className="register__photos">
           <input
             id="add-product-image"
             type="file"
+            name='image'
             onChange={(e) => this.imageUpload(e)}
             ref={this.imageInput}
           />
@@ -148,10 +161,15 @@ class Register extends React.Component {
         </section>
         {this.state.registerStep === 1 ? (
           <section className="register__contact-wrapper">
+            <h2>Register your account</h2>
             <form
               onSubmit={(e) => this.registerSubmit(e)}
               className="register__contact-form"
             >
+            {this.props.loading ? (
+              <Loading />
+            ) : (
+              <>
               <div>
                 <label className="label" htmlFor="register-number">
                   Your number
@@ -194,10 +212,13 @@ class Register extends React.Component {
               >
                 <FontAwesomeIcon icon={faArrowLeft} />
               </button>
+              </>
+            )}
             </form>
           </section>
         ) : (
           <section className="register__login-wrapper">
+            <h2>Register your account</h2>
             <form
               className="register__login-form"
               onSubmit={(e) => {
@@ -210,10 +231,10 @@ class Register extends React.Component {
                   Nickname
                 </label>
                 <input
-                  value={this.state.nickname}
+                  value={this.state.username}
                   onChange={(e) => this.setPass(e)}
                   className="input input--full"
-                  name="nickname"
+                  name="username"
                   id="register-nick"
                   type="text"
                 />
@@ -248,6 +269,12 @@ class Register extends React.Component {
                 <FontAwesomeIcon icon={faArrowRight} />
               </button>
             </form>
+            <div className="register__login">
+              <p className="label">Already have account ?</p>
+              <Link className="btn btn--transparent" to="/Login">
+                Login
+              </Link>
+            </div>
           </section>
         )}
       </main>
@@ -255,9 +282,11 @@ class Register extends React.Component {
   }
 }
 
+const mapStateToProps = ({ user, loading }) => ({ user, loading });
+
 const mapDispatchToProps = (dispatch) => ({
   register: (username, password, contact, image) =>
     dispatch(register(username, password, contact, image)),
 });
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

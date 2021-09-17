@@ -35,13 +35,13 @@ const ShoppingCart = (props) => {
            props.cart.map(item => (
              <div className="cart__element" >
             <img alt="element-img" src={item.images[0]} />
-            <Link to={`products/${item.id}`} className="cart__element-link">{item.title}</Link>
+            <Link to={`products/${item._id}`} className="cart__element-link">{item.title}</Link>
             <p>{item.price}</p>
             <button onClick={()=>deleteElement(item)}><FontAwesomeIcon icon={faTimes}/></button>
              </div>
           ))}
           <p>Total price: {totalPrice} $</p>
-          <button className="btn btn--background">Buy</button>
+          <button className="btn btn--background btn--small">Buy</button>
           </>
           : (
               <div className="cart__no-items">

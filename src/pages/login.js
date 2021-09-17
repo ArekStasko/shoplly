@@ -1,9 +1,11 @@
 import React from "react";
 import { loginText } from "../data/login_slides";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { authenticate } from "../actions/index";
 import { requiredValue } from "../utilities/validation";
+import Loading from "../components/loading";
 
 class Login extends React.Component {
   constructor() {
@@ -45,8 +47,13 @@ class Login extends React.Component {
       this.props.authenticate(data.username, data.password);
     }
   };
+  
 
   render() {
+    if (this.props.user) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <main className="login">
         <section className="login__description">
@@ -64,31 +71,37 @@ class Login extends React.Component {
         <section className="login__form-wrapper">
           <h2>Login to your account</h2>
           <form onSubmit={(e) => this.loginAction(e)} className="login__form">
-            <label className="label" htmlFor="username-login">
-              Username
-            </label>
-            <input
-              onChange={(e) => this.setPass(e)}
-              value={this.state.username}
-              name="username"
-              className="input"
-              id="username-login"
-              type="text"
-            />
-            <label className="label" htmlFor="password-login">
-              Password
-            </label>
-            <input
-              onChange={(e) => this.setPass(e)}
-              value={this.state.password}
-              name="password"
-              className="input"
-              id="password-login"
-              type="password"
-            />
-            <button className="btn btn--background" type="submit">
-              Sign in
-            </button>
+            {this.props.loading ? (
+              <Loading />
+            ) : (
+              <>
+                <label className="label" htmlFor="username-login">
+                  Username
+                </label>
+                <input
+                  onChange={(e) => this.setPass(e)}
+                  value={this.state.username}
+                  name="username"
+                  className="input"
+                  id="username-login"
+                  type="text"
+                />
+                <label className="label" htmlFor="password-login">
+                  Password
+                </label>
+                <input
+                  onChange={(e) => this.setPass(e)}
+                  value={this.state.password}
+                  name="password"
+                  className="input"
+                  id="password-login"
+                  type="password"
+                />
+                <button className="btn btn--background" type="submit">
+                  Sign in
+                </button>
+              </>
+            )}
           </form>
           <div className="login__register">
             <p className="label">Don't have account ?</p>
@@ -102,9 +115,11 @@ class Login extends React.Component {
   }
 }
 
+const mapStateToProps = ({ user, loading }) => ({ user, loading });
+
 const mapDispatchToProps = (dispatch) => ({
   authenticate: (username, password) =>
     dispatch(authenticate(username, password)),
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

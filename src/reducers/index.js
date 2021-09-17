@@ -11,10 +11,22 @@ const persistConfig = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_PRODUCT_SUCC":
+    case "GET_PRODUCTS_SUCC":
       return{
         ...state,
         items:
+        action.payload.data
+      }
+    case "GET_PRODUCT_REQ":
+      return{
+        ...state,
+        loading: true,
+      }
+    case "GET_PRODUCT_SUCC":
+      return{
+        ...state,
+        loading: false,
+        product:
         action.payload.data
       }
     case "ERR":
@@ -25,9 +37,15 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         cart: action.newCart,
       };
+    case "AUTHENTICATE_REQ":
+      return{
+        ...state,
+        loading: true
+      }
     case "AUTHENTICATE_SUCC":
       return{
         ...state,
+        loading: false,
         user: action.payload.data
       }
     case "LOGOUT_SUCC":
@@ -38,9 +56,17 @@ const rootReducer = (state = initialState, action) => {
     case "ADD_PRODUCT":
       console.log(action.data);
       break;
-    case "REGISTER":
-      console.log(action.data);
-      break;
+    case "REGISTER_REQ":
+      return{
+        ...state,
+        loading: true,
+      }
+    case "REGISTER_SUCC":
+      return{
+        ...state,
+        loading: false,
+        user: action.payload.data
+      }
     default:
       return state;
   }
