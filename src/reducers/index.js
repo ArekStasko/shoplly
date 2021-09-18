@@ -14,7 +14,6 @@ const persistConfig = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_PRODUCTS_SUCC":
-      console.log('akcja')
       return{
         ...state,
         redirect: false,
@@ -69,6 +68,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case "ADD_PRODUCT_REQ":
       return{
+        ...state,
         loading: true,
       }
     case "ADD_PRODUCT_SUCC":
