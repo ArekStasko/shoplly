@@ -6,7 +6,7 @@ const {
   REACT_APP_LOGOUT,
   REACT_APP_GET_PRODUCT,
   REACT_APP_ADD_PRODUCT,
-//  REACT_APP_DELETE_PRODUCT,
+  REACT_APP_DELETE_PRODUCT,
 } = process.env;
 
 export const getProducts = () => (dispatch, getState) => {
@@ -86,7 +86,6 @@ export const register = data => (dispatch) => {
 
 
 export const addProduct = (data, userID) => (dispatch) => {
-  console.log(REACT_APP_ADD_PRODUCT+userID)
   dispatch({ type: "ADD_PRODUCT_REQ"});
   return axios
   .post(REACT_APP_ADD_PRODUCT+userID, 
@@ -94,6 +93,18 @@ export const addProduct = (data, userID) => (dispatch) => {
   )
   .then(payload=>{
     dispatch({ type: "ADD_PRODUCT_SUCC", payload })
+  })
+  .catch(err=>{
+    dispatch({ type: "ERR", err })
+  })
+};
+
+export const deleteProduct = (productID, userID) => (dispatch) => {
+  dispatch({ type: "DELETE_PROD_REQ" });
+  return axios
+  .delete(REACT_APP_DELETE_PRODUCT+productID+'/'+userID)
+  .then((payload)=>{
+    dispatch({ type: "DELETE_PROD_SUCC", payload })
   })
   .catch(err=>{
     dispatch({ type: "ERR", err })

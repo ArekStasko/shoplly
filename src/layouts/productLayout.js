@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { EditCart, getProduct } from "../actions/index";
+import { deleteProduct, EditCart, getProduct } from "../actions/index";
 import { useParams } from "react-router-dom";
+import { Redirect } from "react-router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,8 +34,9 @@ const ConditionInfo = styled.div`
 `;
 
 const ProductLayout = (props) => {
+
   let [count, setCount] = useState(0);
-  let [inCart, setInCart] = useState(false)
+  let [inCart, setInCart] = useState(false);
   const { id } = useParams();
   const data = props.product;
   const user = props.user;
@@ -44,7 +46,7 @@ const ProductLayout = (props) => {
     let cartValue = newCart.filter((item) => item._id === data._id).length > 0;
     if (!cartValue) {
       newCart.push(data);
-      setInCart(!inCart)
+      setInCart(!inCart);
       props.EditCart(newCart);
     }
   };
@@ -55,10 +57,12 @@ const ProductLayout = (props) => {
     }
   }, [props, id]);
 
-
   return (
     <main className="product">
-      {data ? (
+      {props.redirect ? (
+        <Redirect to='/products' />
+      )
+      : data ? (
         <>
           <section className="product__show">
             <article className="product__carousel">
@@ -124,8 +128,8 @@ const ProductLayout = (props) => {
                   </div>
                 )}
               </div>
-              <p></p>
-              {newCart.filter((item) => item._id === data._id).length > 0 || inCart ? (
+              {newCart.filter((item) => item._id === data._id).length > 0 ||
+              inCart ? (
                 <div className="btn product__cart-info">Product in cart</div>
               ) : (
                 <button onClick={addProduct} className="btn btn--transparent">
@@ -133,6 +137,15 @@ const ProductLayout = (props) => {
                 </button>
               )}
               <button className="btn btn--background">Buy now</button>
+              {
+               user && user._id === data.userID ? (
+                  <button
+                  onClick={()=>props.deleteProduct(data._id, user._id)}
+                  className="btn btn--background btn--danger"
+                  >
+                  Delete</button>
+                ) : null
+              }
             </article>
           </section>
           <section className="product__details">
@@ -142,17 +155,17 @@ const ProductLayout = (props) => {
               <ConditionInfo condition={data.condition.toLowerCase()}>
                 <p>Condition: {data.condition}</p>
               </ConditionInfo>
-              <KeyInfo
-                available={
-                  user.place.toLowerCase() === data.place.toLowerCase()
-                }
-              >
-                {user.place.toLowerCase() === data.place.toLowerCase() ? (
-                  <p>Same place as yours</p>
-                ) : (
-                  <p>Different place as yours</p>
-                )}
-              </KeyInfo>
+                <KeyInfo
+                  available={
+                    user && user.place.toLowerCase() === data.place.toLowerCase()
+                  }
+                >
+                  {user && user.place.toLowerCase() === data.place.toLowerCase() ? (
+                    <p>Same place as yours</p>
+                  ) : (
+                    <p>Different place as yours</p>
+                  )}
+                </KeyInfo>
               <KeyInfo available={data.negotiations}>
                 {data.negotiations ? (
                   <p>Negotiation possible</p>
@@ -197,15 +210,17 @@ const ProductLayout = (props) => {
   );
 };
 
-const mapStateToProps = ({ product, user, cart }) => ({
+const mapStateToProps = ({ product, user, cart, redirect }) => ({
   product,
   user,
   cart,
+  redirect
 });
 
 const mapDispatchToProps = (dispatch) => ({
   EditCart: (cart) => dispatch(EditCart(cart)),
   getProduct: (id) => dispatch(getProduct(id)),
+  deleteProduct: (productID, userID) => dispatch(deleteProduct(productID, userID))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductLayout);

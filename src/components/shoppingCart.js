@@ -11,29 +11,29 @@ import { Link } from "react-router-dom";
 const ShoppingCart = (props) => {
   const [show, setShow] = useState(false);
 
-  let totalPrice = props.cart ? Math.round(props.cart.reduce((a,b)=>(a + b.price),0) * 1000) / 1000 : null
+  let totalPrice = props.cart ? Math.round(props.cart.reduce((a,b)=>(parseFloat(a) + parseFloat(b.price)),0) * 1000) / 1000 : null
 
   const deleteElement = (element) => {
     let newCart = props.cart;
-    let inCart = newCart.filter(item => item.id !== element.id)
+    let inCart = newCart.filter(item => item._id !== element._id)
     props.EditCart(inCart)
     }
 
   return (
       <div className='cart' >
     <div onClick={()=>setShow(!show)} className="cart__icon">
-      {props.cart ? (
+      {props.cart && props.cart.length > 0 ? (
         <div className="cart__count">{props.cart.length}</div>
       ) : null}
       <FontAwesomeIcon icon={faShoppingCart} />
     </div>
     {show ? (
         <div className="cart__elements">
-          {props.cart ?
+          {props.cart && props.cart.length > 0 ? 
           <>
           {
            props.cart.map(item => (
-             <div className="cart__element" >
+             <div key={item._id} className="cart__element" >
             <img alt="element-img" src={item.images[0]} />
             <Link to={`products/${item._id}`} className="cart__element-link">{item.title}</Link>
             <p>{item.price}</p>

@@ -1,7 +1,9 @@
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-const initialState = {};
+const initialState = {
+  cart:[]
+};
 
 const persistConfig = {
   key: "root",
@@ -12,11 +14,14 @@ const persistConfig = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case "GET_PRODUCTS_SUCC":
+      console.log('akcja')
       return{
         ...state,
+        redirect: false,
         loading: false,
-        items:
-        action.payload.data
+        items: [
+          ...action.payload.data
+        ]
       }
     case "GET_PRODUCT_REQ":
       return{
@@ -57,17 +62,33 @@ const rootReducer = (state = initialState, action) => {
         loading: false,
         user: action.payload.data
       }
-    case "ADD_PRODUCT_REQ":
-      console.log('req');
-      break;
-    case "ADD_PRODUCT_SUCC":
-      console.log(action.payload);
-      break;
     case "EDIT_CART":
       return {
         ...state,
         cart: action.newCart,
       };
+    case "ADD_PRODUCT_REQ":
+      return{
+        loading: true,
+      }
+    case "ADD_PRODUCT_SUCC":
+      return{
+        ...state,
+        items: [
+          ...state.items,
+          action.payload.data
+        ],
+        redirect: true,
+        loading: false,
+      }
+    case "DELETE_PROD_SUCC":
+      return{
+        ...state,
+        items: [
+          ...action.payload.data
+        ],
+        redirect: true
+      }
     case "ERR":
       console.log(action.err)
       break;

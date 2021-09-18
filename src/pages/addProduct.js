@@ -11,6 +11,8 @@ import {
   imageValidation,
 } from "../utilities/validation";
 import styled from "styled-components";
+import { Redirect } from "react-router";
+import Loading from "../components/loading";
 
 const AddedImages = styled.div`
   justify-content: ${({ images }) => (images ? "flex-start" : "center")};
@@ -21,7 +23,7 @@ class AddProducts extends React.Component {
     super(props);
     this.state = {
       details: {
-        title: '',
+        title: "",
         category: "",
         subCategory: "",
         condition: "",
@@ -32,13 +34,12 @@ class AddProducts extends React.Component {
         description: "",
         ship: false,
         negotiations: false,
-        price: ''
+        price: "",
       },
       images: [],
     };
     this.imagesInput = React.createRef(null);
   }
-
 
   imageUpload = (e) => {
     const uploadImages = e.target.files;
@@ -83,19 +84,22 @@ class AddProducts extends React.Component {
       phoneNumberValidation(this.state.details.phoneNumber) &&
       this.state.images.length <= 3
     ) {
-      const details = Object.keys(product.details)
-      const data = new FormData()
-      for(let i=0; i<product.images.length; i++){
-        data.append('images', product.images[i])
+      const details = Object.keys(product.details);
+      const data = new FormData();
+      for (let i = 0; i < product.images.length; i++) {
+        data.append("images", product.images[i]);
       }
-      for(let i=0; i<details.length; i++){
-        data.append(details[i], product.details[details[i]])
+      for (let i = 0; i < details.length; i++) {
+        data.append(details[i], product.details[details[i]]);
       }
       this.props.addProduct(data, this.props.user._id);
     }
   };
 
   render() {
+    if (this.props.redirect) {
+      return <Redirect to="/products" />;
+    }
 
     return (
       <main className="addForm">
@@ -137,32 +141,32 @@ class AddProducts extends React.Component {
         </section>
         <section className="addForm__wrapper">
           <form
-            onSubmit={e => this.submitFunction(e)}
+            onSubmit={(e) => this.submitFunction(e)}
             className="addForm__form"
           >
             <section className="addForm__form-section">
               <article className="addForm__form-title">
                 <div>
-                <label htmlFor="product-title">Product title:</label>
-                <input
-                  onChange={(e) => this.setInfo(e)}
-                  name="title"
-                  className="input"
-                  id="product-title"
-                  type="text"
-                  value={this.state.details.title}
-                />
+                  <label htmlFor="product-title">Product title:</label>
+                  <input
+                    onChange={(e) => this.setInfo(e)}
+                    name="title"
+                    className="input"
+                    id="product-title"
+                    type="text"
+                    value={this.state.details.title}
+                  />
                 </div>
                 <div>
-                <label htmlFor="product-price">Product price:</label>
-                <input
-                  onChange={(e) => this.setInfo(e)}
-                  name="price"
-                  className="input input--number"
-                  id="product-price"
-                  type="number"
-                  value={this.state.details.price}
-                />
+                  <label htmlFor="product-price">Product price:</label>
+                  <input
+                    onChange={(e) => this.setInfo(e)}
+                    name="price"
+                    className="input input--number"
+                    id="product-price"
+                    type="number"
+                    value={this.state.details.price}
+                  />
                 </div>
               </article>
               <article className="addForm__form-description">
@@ -334,9 +338,13 @@ class AddProducts extends React.Component {
                   </select>
                 </div>
               </article>
-              <button className="btn btn--background btn--full" type="submit">
-                Buy
-              </button>
+              {this.props.loading ? (
+                <Loading />
+              ) : (
+                <button className="btn btn--background btn--full" type="submit">
+                  Add Product
+                </button>
+              )}
             </section>
           </form>
         </section>
@@ -349,6 +357,10 @@ const mapDispatchToProps = (dispatch) => ({
   addProduct: (data, userID) => dispatch(addProduct(data, userID)),
 });
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, redirect, loading }) => ({
+  user,
+  redirect,
+  loading,
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProducts);

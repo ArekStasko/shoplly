@@ -43,9 +43,7 @@ class Products extends React.Component {
   }
 
   componentDidMount = () => {
-    if (!this.state.productsData || !this.props.items) {
       this.props.getProducts();
-    }
   };
 
   priceRange = (e, type) => {

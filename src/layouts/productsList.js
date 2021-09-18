@@ -9,11 +9,11 @@ const ProductsList = (props) => {
   return (
     <div className="products-list">
       {props.store.length > 0 ? (
-        props.store.map((item, index) => (
+        props.store.map(item => (
           <Link
             to={`products/${item._id}`}
             className="products-list__element"
-            key={index}
+            key={item._id}
           >
             <div className="products-list__product-image">
               <img src={item.images[0]} alt="product_photo" />

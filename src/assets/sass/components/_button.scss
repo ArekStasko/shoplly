@@ -41,6 +41,11 @@
     }
   }
 
+  &--danger{
+    background-color: #ff0f0fbd;
+    font-weight: 500;
+  }
+
   &--rounded {
     width: 30px;
     height: 30px;
