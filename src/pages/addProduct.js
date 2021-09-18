@@ -21,20 +21,24 @@ class AddProducts extends React.Component {
     super(props);
     this.state = {
       details: {
+        title: '',
         category: "",
         subCategory: "",
         condition: "",
-        phoneNumber: this.props.user.phoneNumber,
-        email: this.props.user.email,
+        phoneNumber: this.props.user.phonenumber,
+        userEmail: this.props.user.email,
         place: this.props.user.place,
+        userName: this.props.user.username,
         description: "",
-        shipment: false,
+        ship: false,
         negotiations: false,
+        price: ''
       },
       images: [],
     };
     this.imagesInput = React.createRef(null);
   }
+
 
   imageUpload = (e) => {
     const uploadImages = e.target.files;
@@ -67,23 +71,32 @@ class AddProducts extends React.Component {
 
   submitFunction = (e) => {
     e.preventDefault();
-    const data = this.state;
+    const product = this.state;
     if (
       requiredValue(
-        data.details.description,
-        data.details.place,
-        data.details.subCategory,
-        data.details.category
+        product.details.description,
+        product.details.place,
+        product.details.subCategory,
+        product.details.category
       ) &&
-      emailValidation(this.state.details.email) &&
+      emailValidation(this.state.details.userEmail) &&
       phoneNumberValidation(this.state.details.phoneNumber) &&
       this.state.images.length <= 3
     ) {
-      this.props.addProduct(this.state.details, this.state.images);
+      const details = Object.keys(product.details)
+      const data = new FormData()
+      for(let i=0; i<product.images.length; i++){
+        data.append('images', product.images[i])
+      }
+      for(let i=0; i<details.length; i++){
+        data.append(details[i], product.details[details[i]])
+      }
+      this.props.addProduct(data, this.props.user._id);
     }
   };
 
   render() {
+
     return (
       <main className="addForm">
         <section className="addForm__images">
@@ -124,11 +137,12 @@ class AddProducts extends React.Component {
         </section>
         <section className="addForm__wrapper">
           <form
-            onSubmit={(e) => this.submitFunction(e)}
+            onSubmit={e => this.submitFunction(e)}
             className="addForm__form"
           >
             <section className="addForm__form-section">
-              <div className="addForm__form-title">
+              <article className="addForm__form-title">
+                <div>
                 <label htmlFor="product-title">Product title:</label>
                 <input
                   onChange={(e) => this.setInfo(e)}
@@ -136,9 +150,22 @@ class AddProducts extends React.Component {
                   className="input"
                   id="product-title"
                   type="text"
+                  value={this.state.details.title}
                 />
-              </div>
-              <div className="addForm__form-description">
+                </div>
+                <div>
+                <label htmlFor="product-price">Product price:</label>
+                <input
+                  onChange={(e) => this.setInfo(e)}
+                  name="price"
+                  className="input input--number"
+                  id="product-price"
+                  type="number"
+                  value={this.state.details.price}
+                />
+                </div>
+              </article>
+              <article className="addForm__form-description">
                 <label className="label" htmlFor="product-description">
                   Product description
                 </label>
@@ -146,9 +173,10 @@ class AddProducts extends React.Component {
                   onChange={(e) => this.setInfo(e)}
                   name="description"
                   id="product-description"
+                  value={this.state.details.description}
                 ></textarea>
-              </div>
-              <div className="addForm__form-contact">
+              </article>
+              <article className="addForm__form-contact">
                 <div>
                   <label className="label" htmlFor="product_phone-number">
                     Phone number to contact
@@ -166,18 +194,18 @@ class AddProducts extends React.Component {
                   <label htmlFor="product_email">Email to contact</label>
                   <input
                     onChange={(e) => this.setInfo(e)}
-                    value={this.state.details.email}
+                    value={this.state.details.userEmail}
                     name="email"
                     className="input"
                     id="product_email"
                     type="text"
                   />
                 </div>
-              </div>
+              </article>
             </section>
 
             <section className="addForm__form-section">
-              <div className="addForm__form-place">
+              <article className="addForm__form-place">
                 <label className="label" htmlFor="product-place">
                   Place of product
                 </label>
@@ -189,8 +217,8 @@ class AddProducts extends React.Component {
                   id="product-place"
                   type="text"
                 />
-              </div>
-              <div className="addForm__form-category">
+              </article>
+              <article className="addForm__form-category">
                 <div>
                   <label className="label" htmlFor="product-category">
                     Product category
@@ -246,8 +274,8 @@ class AddProducts extends React.Component {
                     )}
                   </select>
                 </div>
-              </div>
-              <div className="addForm__form-additional">
+              </article>
+              <article className="addForm__form-additional">
                 <div>
                   <label className="label" htmlFor="product-ship">
                     Shipment
@@ -305,8 +333,8 @@ class AddProducts extends React.Component {
                     <option value="used">Used</option>
                   </select>
                 </div>
-              </div>
-              <button className="btn btn-background" type="submit">
+              </article>
+              <button className="btn btn--background btn--full" type="submit">
                 Buy
               </button>
             </section>
@@ -318,9 +346,9 @@ class AddProducts extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addProduct: (details, images) => dispatch(addProduct(details, images)),
+  addProduct: (data, userID) => dispatch(addProduct(data, userID)),
 });
 
-const mapStateToProps = ({ userExample }) => ({ userExample });
+const mapStateToProps = ({ user }) => ({ user });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddProducts);

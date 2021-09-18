@@ -94,7 +94,7 @@ const ProductLayout = (props) => {
             <article className="product__buy">
               <div className="product__user">
                 <img alt="user_image" src={data.userImage} />
-                <h3>{data.userEmail}</h3>
+                <h3>{data.userName}</h3>
               </div>
               <div className="product__about">
                 <p>

@@ -14,6 +14,7 @@ const rootReducer = (state = initialState, action) => {
     case "GET_PRODUCTS_SUCC":
       return{
         ...state,
+        loading: false,
         items:
         action.payload.data
       }
@@ -29,14 +30,6 @@ const rootReducer = (state = initialState, action) => {
         product:
         action.payload.data
       }
-    case "ERR":
-      console.log(action.err)
-      break;
-    case "ADD_TO_CART":
-      return {
-        ...state,
-        cart: action.newCart,
-      };
     case "AUTHENTICATE_REQ":
       return{
         ...state,
@@ -53,9 +46,6 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         user: null
       }
-    case "ADD_PRODUCT":
-      console.log(action.data);
-      break;
     case "REGISTER_REQ":
       return{
         ...state,
@@ -67,6 +57,20 @@ const rootReducer = (state = initialState, action) => {
         loading: false,
         user: action.payload.data
       }
+    case "ADD_PRODUCT_REQ":
+      console.log('req');
+      break;
+    case "ADD_PRODUCT_SUCC":
+      console.log(action.payload);
+      break;
+    case "EDIT_CART":
+      return {
+        ...state,
+        cart: action.newCart,
+      };
+    case "ERR":
+      console.log(action.err)
+      break;
     default:
       return state;
   }

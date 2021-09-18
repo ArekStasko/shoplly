@@ -3,8 +3,9 @@
   display: flex;
   justify-content: flex-end;
   width: 80%;
-  height: 100vh;
   padding: 10px;
+  font-size: 16px;
+  margin-top: 100px;
 
   &__images,
   &__wrapper {
@@ -140,7 +141,6 @@
 
     &__form-title {
       display: flex;
-      flex-direction: column;
       justify-content: flex-start;
       font-size: 17px;
     }

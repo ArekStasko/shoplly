@@ -34,6 +34,7 @@ const Navbar = (props) => {
           Products
         </Link>
         {props.user ? (
+          <>
           <div className='navbar__logout-wrapper'>
             <img alt="user_image" src={props.user.image} />
             <button
@@ -46,6 +47,10 @@ const Navbar = (props) => {
             Logout
           </button>
           </div>
+          <Link className="btn btn--transparent" to="/products/add">
+            Add product
+          </Link>
+          </>
         ) : (
           <>
             <Link className="navbar__link" to="/login">
@@ -56,9 +61,6 @@ const Navbar = (props) => {
             </Link>
           </>
         )}
-        <Link className="btn btn--transparent" to="/products/add">
-          Add product
-        </Link>
       </NavLinks>
     </nav>
   );

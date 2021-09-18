@@ -5,7 +5,7 @@ const {
   REACT_APP_LOGIN,
   REACT_APP_LOGOUT,
   REACT_APP_GET_PRODUCT,
-//  REACT_APP_ADD_PRODUCT,
+  REACT_APP_ADD_PRODUCT,
 //  REACT_APP_DELETE_PRODUCT,
 } = process.env;
 
@@ -85,10 +85,21 @@ export const register = data => (dispatch) => {
 };
 
 
-export const addProduct = (details, images) => (dispatch) => {
-  dispatch({ type: "ADD_PRODUCT", data: { details, images } });
+export const addProduct = (data, userID) => (dispatch) => {
+  console.log(REACT_APP_ADD_PRODUCT+userID)
+  dispatch({ type: "ADD_PRODUCT_REQ"});
+  return axios
+  .post(REACT_APP_ADD_PRODUCT+userID, 
+    data
+  )
+  .then(payload=>{
+    dispatch({ type: "ADD_PRODUCT_SUCC", payload })
+  })
+  .catch(err=>{
+    dispatch({ type: "ERR", err })
+  })
 };
 
 export const EditCart = (newCart) => (dispatch) => {
-  dispatch({ type: "ADD_TO_CART", newCart });
+  dispatch({ type: "EDIT_CART", newCart });
 };
