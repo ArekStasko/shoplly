@@ -20,11 +20,9 @@ class Login extends React.Component {
 
   componentDidMount() {
     const slideTimer = setInterval(() => {
-      if (this.state.textCount === loginText.length - 1) {
-        this.setState({ textCount: 0 });
-      } else {
-        this.setState({ textCount: this.state.textCount + 1 });
-      }
+      this.state.textCount === loginText.length - 1
+        ? this.setState({ textCount: 0 })
+        : this.setState({ textCount: this.state.textCount + 1 });
     }, 3000);
     this.setState({ intervalID: slideTimer });
   }
@@ -47,7 +45,6 @@ class Login extends React.Component {
       this.props.authenticate(data.username, data.password);
     }
   };
-  
 
   render() {
     if (this.props.user) {

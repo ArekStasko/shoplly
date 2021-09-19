@@ -8,7 +8,7 @@ import { logout } from "../actions/index";
 import FlashMessage from '../components/flash'
 
 const NavLinks = styled.div`
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     transition: all 800ms ease-in-out;
     transform: translateY(${({ show }) => (show ? "0vh" : "-100vh")});
   }

@@ -1,23 +1,19 @@
-import Buy from "../assets/images/login_slides/buy.svg";
-import Sell from "../assets/images/login_slides/sell.svg";
-import Rate from "../assets/images/login_slides/rate.svg";
-
 export const loginText = [
   {
     title: "Buy cheap and fast",
     description:
       "After purchasing the premium version, the parcel will always be delivered on the next day!",
-    icon: Buy,
+    icon: 'https://res.cloudinary.com/dulsntqev/image/upload/v1632084277/buy_ws27ij.svg',
   },
   {
     title: "Sell everything you want",
     description: "In our shops you can even sell your used socks",
-    icon: Sell,
+    icon: 'https://res.cloudinary.com/dulsntqev/image/upload/v1632084277/sell_fpq6vx.svg',
   },
   {
-    title: "You can rate products",
-    description: "you can leave a review or comment",
-    icon: Rate,
+    title: "We are on every device",
+    description: "You can use our store on any device",
+    icon: 'https://res.cloudinary.com/dulsntqev/image/upload/v1632084277/undraw_In_sync_re_jlqd_ietvku.svg',
   },
 ];
 
