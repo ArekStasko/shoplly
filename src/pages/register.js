@@ -27,24 +27,24 @@ class Register extends React.Component {
     super();
     this.state = {
       registerStep: 0,
-      password: "",
-      repeatPassword: "",
-      username: "",
-      contact: {
-        number: "",
+      details:{
+        password: "",
+        repeatPassword: "",
+        username: "",
+        phonenumber: "",
         email: "",
-        province: "",
+        place: "",
         city: "",
       },
       image: [],
     };
   }
 
-  provinceSelect = (e) => {
+  placeSelect = (e) => {
     this.setState({
-      contact: {
-        ...this.state.contact,
-        province: e.target.value,
+      details: {
+        ...this.state.details,
+        place: e.target.value,
         city: RegisterAdressData[0][e.target.value][0],
       },
     });
@@ -52,7 +52,7 @@ class Register extends React.Component {
 
   citySelect = (e) => {
     this.setState({
-      contact: { ...this.state.contact, city: e.target.value },
+      details: { ...this.state.details, city: e.target.value },
     });
   };
 
@@ -78,43 +78,34 @@ class Register extends React.Component {
   setInfo = (e) => {
     const element = e.target;
     this.setState({
-      contact: {
-        ...this.state.contact,
+      details: {
+        ...this.state.details,
         [element.name]: element.value,
       },
     });
   };
 
-  setPass = (e) => {
-    const element = e.target;
-    this.setState({
-      [element.name]: element.value,
-    });
-  };
-
   registerSubmit = (e) => {
     e.preventDefault();
-    const userData = this.state;
+    const userData = this.state.details;
     if (
       requiredValue(
         userData.username,
         userData.password,
-        userData.contact.city,
-        userData.contact.province
+        userData.city,
+        userData.place
       ) &&
-      emailValidation(userData.contact.email) &&
-      phoneNumberValidation(userData.contact.number) &&
+      emailValidation(userData.email) &&
+      phoneNumberValidation(userData.phonenumber) &&
       repeatPassword(userData.password, userData.repeatPassword)
     ) {
 
       const data = new FormData()
-      data.append('image', userData.image[0])
-      data.append('username', userData.username)
-      data.append('password', userData.password)
-      data.append('email', userData.contact.email)
-      data.append('phonenumber', userData.contact.number)
-      data.append('place', userData.contact.province)
-
+      data.append('image', this.state.image[0])
+      const details = Object.keys(this.state.details);
+      for (let i = 0; i < details.length; i++) {
+        data.append(details[i], this.state.details[details[i]]);
+      }
       this.props.register(data);
     }
   };
@@ -132,14 +123,14 @@ class Register extends React.Component {
             id="add-product-image"
             type="file"
             name='image'
-            onChange={(e) => this.imageUpload(e)}
+            onChange={e => this.imageUpload(e)}
             ref={this.imageInput}
           />
           {this.state.image.length > 0 ? (
             this.state.image.map((item, index) => (
               <div className="register__image" key={index}>
                 <div>
-                  <span onClick={(e) => this.imageDelete(e, index)}>
+                  <span onClick={e => this.imageDelete(e, index)}>
                     <FontAwesomeIcon icon={faTimes} />
                   </span>
                   <img
@@ -163,7 +154,7 @@ class Register extends React.Component {
           <section className="register__contact-wrapper">
             <h2>Register your account</h2>
             <form
-              onSubmit={(e) => this.registerSubmit(e)}
+              onSubmit={e => this.registerSubmit(e)}
               className="register__contact-form"
             >
             {this.props.loading ? (
@@ -176,9 +167,9 @@ class Register extends React.Component {
                 </label>
                 <input
                   className="input input--full input--number"
-                  value={this.state.contact.number}
+                  value={this.state.details.phonenumber}
                   onChange={(e) => this.setInfo(e)}
-                  name="number"
+                  name="phonenumber"
                   id="register-number"
                   type="number"
                 />
@@ -189,7 +180,7 @@ class Register extends React.Component {
                 </label>
                 <input
                   className="input input--full"
-                  value={this.state.contact.email}
+                  value={this.state.details.email}
                   onChange={(e) => this.setInfo(e)}
                   name="email"
                   id="register-email"
@@ -197,8 +188,8 @@ class Register extends React.Component {
                 />
               </div>
               <PlacePicker
-                placeData={this.state.contact}
-                selectProvince={this.provinceSelect}
+                placeData={this.state.details}
+                selectProvince={this.placeSelect}
                 selectCity={this.citySelect}
               />
               <button className="btn btn--transparent btn--full" type="submit">
@@ -231,8 +222,8 @@ class Register extends React.Component {
                   Nickname
                 </label>
                 <input
-                  value={this.state.username}
-                  onChange={(e) => this.setPass(e)}
+                  value={this.state.details.username}
+                  onChange={(e) => this.setInfo(e)}
                   className="input input--full"
                   name="username"
                   id="register-nick"
@@ -244,8 +235,8 @@ class Register extends React.Component {
                   Password
                 </label>
                 <input
-                  value={this.state.password}
-                  onChange={(e) => this.setPass(e)}
+                  value={this.state.details.password}
+                  onChange={(e) => this.setInfo(e)}
                   name="password"
                   className="input input--full"
                   id="register-password"
@@ -257,8 +248,8 @@ class Register extends React.Component {
                   Repeat the password
                 </label>
                 <input
-                  value={this.state.repeatPassword}
-                  onChange={(e) => this.setPass(e)}
+                  value={this.state.details.repeatPassword}
+                  onChange={e => this.setInfo(e)}
                   className="input input--full"
                   name="repeatPassword"
                   id="register-repPassword"

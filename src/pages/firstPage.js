@@ -6,9 +6,9 @@ const FirstPage = props => {
 
 
     return(
-        <div>
+        <main>
             FirstPage page
-        </div>
+        </main>
     )
 }
 

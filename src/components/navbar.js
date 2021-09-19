@@ -5,6 +5,7 @@ import { faTimes, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { logout } from "../actions/index";
+import FlashMessage from '../components/flash'
 
 const NavLinks = styled.div`
   @media (max-width: 768px) {
@@ -13,10 +14,12 @@ const NavLinks = styled.div`
   }
 `;
 
-const Navbar = (props) => {
+const Navbar = ({user, flash, logout}) => {
   const [show, setShow] = useState(false);
 
   return (
+    <>
+    { flash ? <FlashMessage duration={3000} /> : null}
     <nav className="navbar">
       <div className="navbar__title">
         <Link to="/">Shoplly</Link>
@@ -33,13 +36,13 @@ const Navbar = (props) => {
         <Link className="navbar__link" to="/products">
           Products
         </Link>
-        {props.user ? (
+        {user ? (
           <>
           <div className='navbar__logout-wrapper'>
-            <img alt="user_image" src={props.user.image} />
+            <img alt="user_image" src={user.image} />
             <button
             onClick={() => {
-              props.logout();
+              logout();
             }}
             className="btn btn--small btn--background"
             to="/login"
@@ -63,10 +66,11 @@ const Navbar = (props) => {
         )}
       </NavLinks>
     </nav>
+    </>
   );
 };
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, flash }) => ({ user, flash });
 
 const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(logout()),

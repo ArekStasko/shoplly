@@ -54,7 +54,7 @@ export const authenticate = (username, password) => (dispatch) => {
       dispatch({ type: "AUTHENTICATE_SUCC", payload });
     })
     .catch(err => {
-      dispatch({ type: "ERR", err });
+      dispatch({ type: "AUTHENTICATE_ERR", err });
     });
 };
 
@@ -80,7 +80,7 @@ export const register = data => (dispatch) => {
     dispatch({ type: "REGISTER_SUCC", payload })
   })
   .catch(err=>{
-    dispatch({ type: "ERR", err })
+    dispatch({ type: "REGISTER_ERR", err })
   })
 };
 
@@ -114,3 +114,9 @@ export const deleteProduct = (productID, userID) => (dispatch) => {
 export const EditCart = (newCart) => (dispatch) => {
   dispatch({ type: "EDIT_CART", newCart });
 };
+
+export const resetFlash = () => {
+  return{ 
+    type: "RESET_FLASH" 
+  }
+}

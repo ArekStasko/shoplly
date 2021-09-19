@@ -19,7 +19,6 @@ export const requiredValue = (...value) => {
     const checkValues = value
     for(let i=0; i<checkValues.length; i++){
         if(checkValues[i].length === 0) {
-            console.log(checkValues)
             return false
         }
     }

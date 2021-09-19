@@ -240,7 +240,7 @@ class Products extends React.Component {
   }
 }
 
-const mapStateToProps = ({ items, cart, loading }) => ({ items, cart, loading });
+const mapStateToProps = ({ items, cart, loading, flash }) => ({ items, cart, loading, flash });
 
 const mapDispatchToProps = (dispatch) => ({
   getProducts: () => dispatch(getProducts()),

@@ -97,7 +97,7 @@ class AddProducts extends React.Component {
   };
 
   render() {
-    if (this.props.redirect || !this.props.user) {
+    if (this.props.redirect) {
       return <Redirect to="/products" />;
     }
 
@@ -285,11 +285,11 @@ class AddProducts extends React.Component {
                     Shipment
                   </label>
                   <input
-                    onChange={(e) =>
+                    onChange={e =>
                       this.setState({
                         details: {
                           ...this.state.details,
-                          shipment: e.target.checked,
+                          ship: e.target.checked,
                         },
                       })
                     }

@@ -43,12 +43,29 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         loading: false,
-        user: action.payload.data
+        user: action.payload.data,
+        flash: {
+          type: 'SUCCESS',
+          message: 'Hello again !'
+        }
+      }
+    case "AUTHENTICATE_ERR":
+      return{
+        ...state,
+        loading: false,
+        flash: {
+          type: 'ERROR',
+          message: 'Wrong password or username'
+        }
       }
     case "LOGOUT_SUCC":
       return{
         ...state,
-        user: null
+        user: null,
+        flash: {
+          type: 'SUCCESS',
+          message: 'Goodbye !'
+        }
       }
     case "REGISTER_REQ":
       return{
@@ -59,7 +76,20 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         loading: false,
-        user: action.payload.data
+        user: action.payload.data,
+        flash: {
+          type: 'SUCCESS',
+          message: 'Hello on shoplly !'
+        }
+      }
+    case "REGISTER_ERR":
+      return {
+        ...state,
+        loading: false,
+        flash: {
+          type: 'ERROR',
+          message: 'Fill out the form'
+        }
       }
     case "EDIT_CART":
       return {
@@ -80,6 +110,10 @@ const rootReducer = (state = initialState, action) => {
         ],
         redirect: true,
         loading: false,
+        flash: {
+          type: 'SUCCESS',
+          message: 'Succesfully added product !'
+        }
       }
     case "DELETE_PROD_SUCC":
       return{
@@ -87,11 +121,25 @@ const rootReducer = (state = initialState, action) => {
         items: [
           ...action.payload.data
         ],
-        redirect: true
+        redirect: true,
+        flash: {
+          type: 'SUCCESS',
+          message: 'Succesfully deleted product !'
+        }
+      }
+    case "RESET_FLASH":
+      return{
+        ...state,
+        flash: null
       }
     case "ERR":
-      console.log(action.err)
-      break;
+      return{
+        ...state,
+        flash: {
+          type: 'ERROR',
+          message: 'We have an error'
+        }
+      }
     default:
       return state;
   }
