@@ -201,6 +201,7 @@ class Products extends React.Component {
                       <option value="lowHigh">Price: Low-High</option>
                     </select>
                   </div>
+                  <div className='products__form-btns'>
                   <button
                     className="btn btn--background"
                     onClick={this.filterFunction}
@@ -215,6 +216,7 @@ class Products extends React.Component {
                   >
                     Clear Filter
                   </button>
+                  </div>
                 </div>
               ) : null}
             </>

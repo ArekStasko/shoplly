@@ -105,7 +105,7 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
         items: [
-          ...state.items,
+          ...state['items'],
           action.payload.data
         ],
         redirect: true,
@@ -113,6 +113,16 @@ const rootReducer = (state = initialState, action) => {
         flash: {
           type: 'SUCCESS',
           message: 'Succesfully added product !'
+        }
+      }
+    case 'ADD_PRODUCT_ERR':
+      console.log(action.err)
+      return{
+        ...state,
+        loading: false,
+        flash: {
+          type: 'ERROR',
+          message: 'Please enter correct values'
         }
       }
     case "DELETE_PROD_SUCC":
@@ -127,14 +137,24 @@ const rootReducer = (state = initialState, action) => {
           message: 'Succesfully deleted product !'
         }
       }
+    case "SET_FLASH":
+      return{
+        ...state,
+        flash:{
+          type: 'ERROR',
+          message: action.message
+        }
+      }
     case "RESET_FLASH":
       return{
         ...state,
         flash: null
       }
     case "ERR":
+      console.log(action.err)
       return{
         ...state,
+        loading: false,
         flash: {
           type: 'ERROR',
           message: 'We have an error'

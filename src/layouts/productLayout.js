@@ -56,7 +56,6 @@ const ProductLayout = (props) => {
       props.getProduct(id);
     }
   }, [props, id]);
-
   return (
     <main className="product">
       {props.redirect ? (
@@ -191,7 +190,7 @@ const ProductLayout = (props) => {
               <div className="product__contact-info">
                 <div>
                   <p>
-                    Phone number: <span>{data.phoneNumber}</span>
+                    Phone number: <span>{data.phoneNumber.match(/.{1,3}/g).join('-')}</span>
                   </p>
                 </div>
                 <div>

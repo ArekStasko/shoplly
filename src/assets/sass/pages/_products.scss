@@ -10,11 +10,9 @@
   &__category {
     position: fixed;
     top: 90px;
-    z-index: 3;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 15%;
     background-color: #f5f1f1;
   }
 
@@ -28,14 +26,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     width: 100%;
-    min-height: 60%;
+    min-height: 7rem;
+    padding: 5px;
     border-bottom: 1px solid #dbd9d9;
 
     p {
       font-weight: 400;
       font-size: 18px;
-      margin: 0px 20px;
+      margin: 0 20px;
       transition: all 300ms ease-in-out;
 
       &:hover {
@@ -46,7 +46,7 @@
 
   &__filter {
     width: 100%;
-    min-height: 40%;
+    min-height: 5rem;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -123,6 +123,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   &__form-location {
@@ -163,8 +164,27 @@
     }
   }
 
+  &__form-btns{
+    display: flex;
+    flex-wrap: wrap;
+    button{
+      margin: 5px;
+    }
+  }
+
   &__form-sort {
     display: flex;
     margin-top: 18px;
   }
+}
+
+@media (max-width: 425px){
+  .products {
+    &__form-selectors {
+      width: 100%;
+      justify-content: center;
+      
+    }
+  }
+
 }

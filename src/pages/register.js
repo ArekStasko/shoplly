@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router";
-import { register } from "../actions/index";
+import { register, setFlash } from "../actions/index";
 import {
   emailValidation,
   phoneNumberValidation,
@@ -95,9 +95,9 @@ class Register extends React.Component {
         userData.city,
         userData.place
       ) &&
-      emailValidation(userData.email) &&
-      phoneNumberValidation(userData.phonenumber) &&
-      repeatPassword(userData.password, userData.repeatPassword)
+      emailValidation(userData.email, this.props.setFlash) &&
+      phoneNumberValidation(userData.phonenumber, this.props.setFlash) &&
+      repeatPassword(userData.password, userData.repeatPassword, this.props.setFlash)
     ) {
 
       const data = new FormData()
@@ -107,7 +107,7 @@ class Register extends React.Component {
         data.append(details[i], this.state.details[details[i]]);
       }
       this.props.register(data);
-    }
+    } 
   };
 
   render() {
@@ -278,6 +278,7 @@ const mapStateToProps = ({ user, loading }) => ({ user, loading });
 const mapDispatchToProps = (dispatch) => ({
   register: (username, password, contact, image) =>
     dispatch(register(username, password, contact, image)),
+  setFlash: message => dispatch(setFlash(message))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

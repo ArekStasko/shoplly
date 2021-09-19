@@ -1,7 +1,7 @@
 .flash{
     position: fixed;
     z-index: 4;
-    top: 20vh;
+    bottom: 5vh;
     &__error, 
     &__success{
         display: flex;
@@ -40,4 +40,18 @@
     &__icon{
         font-size: 4rem;
     }
+}
+
+@media (max-width: 425px){
+    .flash{
+        &__error, 
+        &__success{
+            max-width: 25rem;
+    
+            p{
+                font-weight: 400;
+                font-size: 16px;
+            }
+        }
+}
 }

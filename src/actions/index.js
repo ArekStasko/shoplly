@@ -95,7 +95,7 @@ export const addProduct = (data, userID) => (dispatch) => {
     dispatch({ type: "ADD_PRODUCT_SUCC", payload })
   })
   .catch(err=>{
-    dispatch({ type: "ERR", err })
+    dispatch({ type: "ADD_PRODUCT_ERR", err })
   })
 };
 
@@ -114,6 +114,10 @@ export const deleteProduct = (productID, userID) => (dispatch) => {
 export const EditCart = (newCart) => (dispatch) => {
   dispatch({ type: "EDIT_CART", newCart });
 };
+
+export const setFlash = (message) => (dispatch) => {
+  dispatch({type: 'SET_FLASH', message})
+}
 
 export const resetFlash = () => {
   return{ 

@@ -26,7 +26,7 @@ class AddProducts extends React.Component {
         title: "",
         category: "",
         subCategory: "",
-        condition: "",
+        condition: "new",
         phoneNumber: this.props.user.phonenumber,
         userEmail: this.props.user.email,
         place: this.props.user.place,
@@ -139,6 +139,7 @@ class AddProducts extends React.Component {
             )}
           </AddedImages>
         </section>
+        
         <section className="addForm__wrapper">
           <form
             onSubmit={(e) => this.submitFunction(e)}
@@ -241,9 +242,9 @@ class AddProducts extends React.Component {
                     className="select"
                     id="product-category"
                   >
-                    {Object.entries(ProductsCategories[0]).map((item) => (
-                      <option key={item[0]} value={item[0]}>
-                        {item[0]}
+                    {Object.keys(ProductsCategories[0]).map(item => (
+                      <option key={item} value={item}>
+                        {item}
                       </option>
                     ))}
                   </select>
@@ -267,7 +268,7 @@ class AddProducts extends React.Component {
                   >
                     {this.state.details.category ? (
                       ProductsCategories[0][this.state.details.category].map(
-                        (item) => (
+                        item => (
                           <option key={item} value={item}>
                             {item}
                           </option>
@@ -320,7 +321,7 @@ class AddProducts extends React.Component {
                     Product condition
                   </label>
                   <select
-                    onChange={(e) =>
+                    onChange={e =>
                       this.setState({
                         details: {
                           ...this.state.details,
