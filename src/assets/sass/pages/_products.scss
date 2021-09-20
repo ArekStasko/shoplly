@@ -1,71 +1,60 @@
 .products {
-  width: 100%;
+  width: $full;
   margin-top: 10rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
+  @include createFlex(flex, center, center, column);
+  font-size: 1.6rem;
 
   &__category {
     position: fixed;
-    top: 90px;
+    top: 9rem;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    background-color: #f5f1f1;
+    width: $full;
+    background-color: $color-light-gray;
   }
 
   &__search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include createFlex(flex, center, center);
   }
 
   &__category-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include createFlex(flex, center, center);
     flex-wrap: wrap;
-    width: 100%;
+    width: $full;
     min-height: 7rem;
     padding: 5px;
     border-bottom: 1px solid #dbd9d9;
 
     p {
       font-weight: 400;
-      font-size: 18px;
-      margin: 0 20px;
+      font-size: 1.8rem;
+      margin: 0 2rem;
       transition: all 300ms ease-in-out;
 
       &:hover {
-        color: #6c63ff;
+        color: $color-dark-blue;
       }
     }
   }
 
   &__filter {
-    width: 100%;
+    width: $full;
     min-height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+    @include createFlex(flex, flex-end, center);
 
     div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 30%;
+      @include createFlex(flex, center, center);
+      width: $small-30;
       cursor: pointer;
 
       p {
         font-weight: 400;
-        font-size: 18px;
-        margin-right: 10px;
+        font-size: 1.8rem;
+        margin-right: 1rem;
         transition: all 300ms ease-in-out;
 
         &:hover {
-          color: #6c63ff;
+          color: $color-dark-blue;
         }
       }
     }
@@ -73,9 +62,7 @@
 
   &__form-checkbox {
     div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include createFlex(flex, center, center);
       margin: 8px;
 
       label {
@@ -84,73 +71,66 @@
         transition: all 300ms ease-in-out;
 
         &:hover {
-          color: #6c63ff;
+          color: $color-dark-blue;
         }
       }
     }
   }
 
   &__filter-form {
-    display: flex;
+    @include createFlex(flex, center, center);
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     background-color: #eeeeee;
-    width: 100%;
+    width: $full;
     border-bottom: 1px solid #dbd9d9;
-    padding-bottom: 10px;
+    padding-bottom: 1rem;
 
     p {
-      font-size: 15px;
+      font-size: 1.5rem;
       transition: all 300ms ease-in-out;
       cursor: pointer;
-      margin: 0px 20px;
+      margin: 0 2rem;
 
       &:hover {
-        color: #6c63ff;
+        color: $color-dark-blue;
       }
     }
   }
 
   &__filter-icon {
-    font-size: 25px;
-    color: #6c63ff;
+    font-size: 2.5rem;
+    color: $color-dark-blue;
   }
 
   &__form-selectors {
-    width: 70%;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: $big-70;
+    padding: 1rem;
+    @include createFlex(flex, space-between, center);
     flex-wrap: wrap;
   }
 
   &__form-location {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 18px;
+    @include createFlex(flex, center, center);
+    margin-top: 1.8rem;
   }
 
   &__form-price {
-    display: flex;
-    justify-content: center;
+    @include createFlex(flex, center);
 
     div {
       display: flex;
       flex-direction: column;
-      margin: 0px 5px;
+      margin: 0 5px;
 
       //this is custom input, do not replace it with regular input
       input {
-        width: 50px;
-        height: 50px;
+        width: 5rem;
+        height: 5rem;
         border-radius: 6px;
-        background-color: #f5f1f1ad;
+        background-color: $color-gray;
         outline: none;
         transition: all 300ms ease-in-out;
-        padding: 10px;
+        padding: 1rem;
         align-items: center;
 
         &::-webkit-input-placeholder {
@@ -174,14 +154,14 @@
 
   &__form-sort {
     display: flex;
-    margin-top: 18px;
+    margin-top: 1.8rem;
   }
 }
 
 @media (max-width: 425px){
   .products {
     &__form-selectors {
-      width: 100%;
+      width: $full;
       justify-content: center;
       
     }

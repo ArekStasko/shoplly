@@ -1,103 +1,83 @@
 .product {
-  width: 100%;
-  margin-top: 120px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: $full;
+  margin-top: 12rem;
+  @include createFlex(flex, center, center, column);
   font-size: 1.6rem;
   padding: 0 1rem;
 
   &__show {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    width: $full;
+    @include createFlex(flex, space-evenly, center);
     flex-wrap: wrap;
   }
 
   &__carousel {
     width: 70rem;
     height: 50rem;
-    border: 1px solid #e0dbdb;
-    background-color: #f3efefad;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    box-shadow: -21px 18px 48px -23px rgba(0, 0, 0, 0.75);
+    border: 1px solid $color-dark-gray;
+    background-color: $color-gray;
+    @include createFlex(flex, center, center, column);
+    box-shadow: -2.1rem 1.8rem 4.8rem -2.3rem rgba(0, 0, 0, 0.75);
     border-radius: 6px;
-    margin: 10px 0px;
+    margin: 1rem 0px;
   }
 
   &__carousel-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    @include createFlex(flex, center, center);
 
     img {
       max-width: 70rem;
       max-height: 40rem;
-      width: 90%;
-      height: 90%;
+      width: $big-90;
+      height: $big-90;
       border-radius: 6px;
     }
   }
 
   &__dots {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    @include createFlex(flex, center, center);
+    width: $full;
 
     div {
-      border: 1px solid #6c63ff;
+      border: 1px solid $color-dark-blue;
       border-radius: 3rem;
-      width: 15px;
-      height: 15px;
+      width: 1.5rem;
+      height: 1.5rem;
       margin: 5px;
       transition: all 300ms ease-in-out;
     }
   }
 
   &__buy {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+   @include createFlex(flex, space-around, center, column);
     width: 50rem;
     height: 50rem;
-    padding: 20px;
-    border: 1px solid #e0dbdb;
-    background-color: #f3efefad;
-    box-shadow: -21px 18px 48px -23px rgba(0, 0, 0, 0.75);
+    padding: 2rem;
+    border: 1px solid $color-dark-gray;
+    background-color: $color-gray;
+    box-shadow: -2.1rem 1.8rem 4.8rem -2.3rem rgba(0, 0, 0, 0.75);
     border-radius: 6px;
-    margin: 10px 0px
+    margin: 1rem 0px
   }
 
   &__user {
-    width: 80%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    width: $big-80;
+    @include createFlex(flex, space-evenly, center);
 
     img {
       width: 7rem;
       height: 7rem;
-      border-radius: 90px;
+      border-radius: 9rem;
     }
   }
 
   &__about {
-    border: 1px solid #6c63ff;
+    border: 1px solid $color-dark-blue;
     border-radius: 6px;
-    width: 90%;
+    width: $big-90;
     min-height: 5rem;
     margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include createFlex(flex, center, center);
 
     span {
       font-weight: 500;
@@ -105,39 +85,31 @@
   }
 
   &__shipment {
-    width: 90%;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #6c63ff;
+    width: $big-90;
+    height: $small-30;
+    @include createFlex(flex, center, center, column);
+    border: 1px solid $color-dark-blue;
     border-radius: 6px;
-    padding: 10px;
+    padding: 1rem;
   }
 
   &__status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include createFlex(flex, center, center);
     font-weight: 500;
-    width: 100%;
+    width: $full;
 
     div {
-      width: 13px;
-      height: 13px;
-      border-radius: 10px;
-      margin: 0px 10px;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 1rem;
+      margin: 0 1rem;
     }
   }
 
   &__info {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 10px;
+    width: $full;
+    @include createFlex(flex, center, flex-start, column);
+    margin-top: 1rem;
 
     span{
     font-weight: 500;
@@ -145,18 +117,18 @@
   }
 
   &__cart-info{
-    border: 1px solid #6c63ff;
+    border: 1px solid $color-dark-blue;
     cursor: initial;
   }
 
   &__details {
-    width: 80%;
-    border: 1px solid #e0dbdb;
-    background-color: #f3efefad;
-    box-shadow: -21px 18px 48px -23px rgba(0, 0, 0, 0.75);
+    width: $big-80;
+    border: 1px solid $color-dark-gray;
+    background-color: $color-gray;
+    box-shadow: -2.1rem 1.8rem 4.8rem -2.3rem rgba(0, 0, 0, 0.75);
     border-radius: 6px;
-    padding: 10px;
-    margin: 15px 0px;
+    padding: 1rem;
+    margin: 1.5rem 0;
 
     h1 {
       font-weight: 400;
@@ -169,75 +141,69 @@
   }
 
   &__keyInfo {
-    border: 1px solid #e0dbdb;
+    border: 1px solid $color-dark-gray;
     border-radius: 6px;
-    width: 100%;
-    padding: 15px;
+    width: $full;
+    padding: 1.5rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    margin: 15px 0px;
+    margin: 1.5rem 0;
 
     div {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 200px;
-      height: 40px;
+    @include createFlex(flex, center, center);
+      width: 20rem;
+      height: 4rem;
       border-radius: 6px;
-      color: #ffffff;
+      color: $color-white;
       margin: 5px;
       font-weight: 500;
     }
   }
 
   &__description {
-    width: 80%;
+    width: $big-80;
     display: flex;
     flex-direction: column;
-    font-size: 18px;
-    margin: 15px 0px;
+    font-size: 1.8rem;
+    margin: 1.5rem 0;
 
    :first-child{
     font-weight: 400;
-    font-size: 25px;
+    font-size: 2.5rem;
    }
   }
 
   &__decoration-line {
-    width: 100%;
-    border-top: 1px solid #6c63ff;
+    width: $full;
+    border-top: 1px solid $color-dark-blue;
   }
 
   &__contact {
-    width: 100%;
+    width: $full;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     font-weight: 400;
-    font-size: 20px;
-    margin: 15px 0px;
+    font-size: 2rem;
+    margin: 1.5rem 0;
   }
 
   &__contact-info {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+    width: $full;
+    @include createFlex(flex, flex-start, center);
     flex-wrap: wrap;
-    margin: 15px 0px;
+    margin: 1.5rem 0;
 
     div {
-      border: 1px solid #6c63ff;
+      border: 1px solid $color-dark-blue;
       border-radius: 6px;
       width: 40rem;
       height: 5rem;
-      padding: 15px;
-      margin: 0 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
+      padding: 1.5rem;
+      margin: 0 1rem;
+      @include createFlex(flex, center, center);
+      margin-top: 1rem;
 
       span {
         font-weight: 500;
@@ -249,7 +215,7 @@
 @media (max-width: 768px ){
   .product{
     &__details {
-      width: 100%;
+      width: $full;
     }
   }
 }

@@ -189,12 +189,13 @@ class Products extends React.Component {
                   </div>
                   <div className="products__form-sort">
                     <select
+                      defaultValue={'DEFAULT'}
                       className="select"
                       onChange={(e) =>
                         this.setState({ sortValue: e.target.value })
                       }
                     >
-                      <option value="" disabled selected>
+                       <option value="DEFAULT" hidden disabled>
                         Sort by
                       </option>
                       <option value="highLow">Price: High-Low</option>

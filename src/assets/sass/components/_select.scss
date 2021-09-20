@@ -6,15 +6,15 @@
     cursor: inherit;
     line-height: inherit;
     outline: none;
-    height: 50px;
+    height: 5rem;
     border-radius: 6px;
-    background-color: #f5f1f1ad;
+    background-color: $color-gray;
     border: 2px solid #b6b2b2;
     outline: none;
     transition: all 300ms ease-in-out;
-    padding: 10px;
+    padding: 1rem;
   
     &:focus {
-      border: 2px solid #6c63ff;
+      border: 2px solid $color-dark-blue;
     }
 }
