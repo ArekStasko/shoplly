@@ -1,0 +1,18 @@
+@mixin createFlex(
+    $display: false,
+    $justify: false,
+    $align: false,
+    $flexDirection: false,
+) {
+    @if $flexDirection {
+        display: $display;
+        flex-direction: $flexDirection;
+        justify-content: $justify;
+        align-items: $align;
+    }
+    @if $display{
+        display: $display;
+        justify-content: $justify;
+        align-items: $align;
+    }
+}

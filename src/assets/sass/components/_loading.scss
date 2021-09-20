@@ -1,24 +1,22 @@
 .loading {
-   width: 100%;
+   width: $full;
    height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+   @include createFlex(flex, center, center);
 
     &__animation{
         display: inline-block;
-        width: 110px;
-        height: 110px;
+        width: 11rem;
+        height: 11rem;
 
     &:after {
         content: " ";
         display: block;
-        width: 94px;
-        height: 94px;
+        width: 9.4rem;
+        height: 9.4rem;
         margin: 8px;
-        border-radius: 50%;
-        border: 6px solid #6c63ff;
-        border-color: #6c63ff transparent #6c63ff transparent;
+        border-radius: $medium-50;
+        border: 6px solid $color-dark-blue;
+        border-color: $color-dark-blue transparent $color-dark-blue transparent;
         animation: lds-dual-ring 1.2s linear infinite;
       }
   }

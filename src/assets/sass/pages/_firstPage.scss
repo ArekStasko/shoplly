@@ -1,39 +1,34 @@
 .first-page{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    @include createFlex(flex, center, center);
+    width: $full;
     height: 95vh;
     background-image: 
     linear-gradient(
         to right bottom,
         rgba(#7d76ff, 0.7),
-        rgba(#6c63ff, 0.7)
+        rgba($color-dark-blue, 0.7)
         ),
     url('https://res.cloudinary.com/dulsntqev/image/upload/v1632082483/photo-1600009723489-027195d6b3d3_yt7zwh.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top;
-    clip-path: polygon(0 20vh, 100% 0, 100% 80vh, 0 100%);
+    clip-path: polygon(0 20vh, $full 0, $full 80vh, 0 $full);
 
     &__header{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #f8dcdc;
+        @include createFlex(flex, center, center, column);
+        background-color: $color-dark-white;
         width: 30rem;
         height: 30rem;
         border-radius: 5px;
-        border: 1px solid #6c63ff;
+        border: 1px solid $color-dark-blue;
 
         h1{
             font-size: 3rem;
-            color: #6c63ff;
+            color: $color-dark-blue;
         }
 
         a{
-            margin-top: 15px;
+            margin-top: 1.5rem;
         }
     }
 }

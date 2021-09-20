@@ -1,31 +1,27 @@
 .addForm {
   position: relative;
-  display: flex;
-  justify-content: flex-end;
+  @include createFlex(flex, flex-end);
   flex-wrap: wrap;
-  width: 100%;
-  font-size: 16px;
-  margin-top: 100px;
+  width: $full;
+  font-size: 1.6rem;
+  margin-top: 10rem;
 
   &__images,
   &__wrapper {
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #e0dbdb;
-    background-color: #f3efefad;
-    border-radius: 10px;
-    box-shadow: -21px 18px 48px -33px rgba(0, 0, 0, 0.75);
+    margin: 1rem;
+    padding: 2rem;
+    border: 1px solid $color-dark-gray;
+    background-color: $color-gray;
+    border-radius: 1rem;
+    box-shadow: -2.1rem 1.8rem 4.8rem -3.3rem rgba(0, 0, 0, 0.75);
   }
 
   &__images {
     position: fixed;
-    left: 10%;
-    display: flex;
+    left: $small-10;
+    @include createFlex(flex, center, center, column);
     width: 60rem;
-    max-width: 90%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    max-width: $big-90;
 
     input {
       display: none;
@@ -33,66 +29,61 @@
   }
 
   &__add-image {
-    padding: 10px;
+    padding: 1rem;
     cursor: pointer;
-    border: 1px solid #6c63ff88;
+    border: 1px solid $color-dark-blue;
     border-radius: 6px;
-    width: 100%;
-    min-height: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 10px;
+    width: $full;
+    min-height: 35rem;
+    @include createFlex(flex, space-evenly, center, column);
+    margin-bottom: 1rem;
 
     span:last-of-type {
-      font-size: 30px;
+      font-size: 3rem;
       font-weight: 500;
-      color: #6c63ffdd;
+      color: $color-dark-blue;
     }
   }
 
   &__add-image-icon {
     color: #dcdad1;
-    font-size: 150px;
+    font-size: 15rem;
   }
 
   &__added-images {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    width: 100%;
-    height: 120px;
-    padding: 10px;
-    border: 1px solid #6c63ff88;
+    width: $full;
+    height: 12rem;
+    padding: 1rem;
+    border: 1px solid $color-dark-blue;
     border-radius: 6px;
 
     div {
       position: relative;
-      width: 100px;
-      height: 100px;
+      width: 10rem;
+      height: 10rem;
       border-radius: 6px;
       margin: 0 5px;
-      border: 1px solid #6c63ff88;
+      border: 1px solid $color-dark-blue;
 
       img {
-        width: 100%;
-        height: 100%;
+        width: $full;
+        height: $full;
       }
 
       span {
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include createFlex(flex, center, center);
         position: absolute;
         right: -8px;
         top: -8px;
-        width: 20px;
-        height: 20px;
-        background-color: #ffffff;
-        border: 1px solid #6c63ff;
-        border-radius: 20px;
+        width: 2rem;
+        height: 2rem;
+        background-color: $color-white;
+        border: 1px solid $color-dark-blue;
+        border-radius: 2rem;
         transition: all 300ms ease-in-out;
 
         &:hover {
@@ -100,19 +91,17 @@
         }
 
         :first-child {
-          font-size: 14px;
+          font-size: 1.4rem;
         }
       }
     }
   }
 
   &__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10%;
+    @include createFlex(flex, center, center);
+    margin-right: $small-10;
     width: 70rem;
-    max-width: 90%;
+    max-width: $big-90;
 
     div {
       margin-bottom: 5px;
@@ -120,8 +109,8 @@
   }
 
   &__form {
-    width: 100%;
-    height: 100%;
+    width: $full;
+    height: $full;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -131,24 +120,23 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border-radius: 10px;
-    padding: 20px;
-    height: 500px;
-    margin-bottom: 20px;
-    border: 1px solid #6c63ff88;
+    border-radius: 1rem;
+    padding: 2rem;
+    height: 50rem;
+    margin-bottom: 2rem;
+    border: 1px solid $color-dark-blue;
   }
 
   &__form-title {
-    display: flex;
-    justify-content: space-between;
+    @include createFlex(flex, space-between);
     flex-wrap: wrap;
-    font-size: 17px;
+    font-size: 1.7rem;
     div {
       display: flex;
       flex-direction: column;
 
       input{
-        width: 90%;
+        width: $big-90;
       }
     }
   }
@@ -158,74 +146,67 @@
     flex-direction: column;
 
     textarea {
-      max-width: 100%;
-      height: 150px;
-      max-height: 240px;
+      max-width: $full;
+      height: 15rem;
+      max-height: 24rem;
       outline: none;
       border-radius: 6px;
       border: 2px solid #b6b2b2;
       transition: border 300ms ease-in-out;
 
       &:focus {
-        border: 2px solid #6c63ff;
+        border: 2px solid $color-dark-blue;
       }
     }
   }
 
   &__form-contact {
-    display: flex;
-    justify-content: space-between;
+    @include createFlex(flex, space-between);
     flex-wrap: wrap;
-    width: 100%;
+    width: $full;
 
     div {
-      width: 50%;
+      width: $medium-50;
 
       input {
-        width: 90%;
+        width: $big-90;
         margin-top: 5px;
       }
     }
   }
 
   &__form-place {
-    width: 100%;
-    display: flex;
+    width: $full;
+    @include createFlex(flex, space-evenly);
     flex-direction: column;
-    justify-content: space-evenly;
 
     input {
-      width: 100%;
+      width: $full;
     }
   }
 
   &__form-category {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
+    @include createFlex(flex, flex-start);
+    width: $full;
 
     div:last-of-type {
-      margin-left: 20px;
+      margin-left: 2rem;
     }
 
     div {
-      width: 50%;
+      width: $medium-50;
       display: flex;
       flex-direction: column;
     }
   }
 
   &__form-additional {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include createFlex(flex, space-between, center);
     flex-wrap: wrap;
-    width: 100%;
+    width: $full;
 
     div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include createFlex(flex, center, center);
 
       input {
         margin-left: 5px;
@@ -233,14 +214,11 @@
     }
 
     div:last-of-type {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-direction: column;
-      width: 50%;
+      @include createFlex(flex, center, flex-start, column);
+      width: $medium-50;
 
       select {
-        width: 100%;
+        width: $full;
       }
     }
   }
@@ -248,9 +226,7 @@
 
 @media (max-width: 1440px) {
   .addForm {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include createFlex(flex, center, center);
 
     &__images {
       position: initial;
@@ -262,20 +238,20 @@
 
     &__form-contact {
       flex-wrap: wrap;
-      width: 100%;
+      width: $full;
 
       div {
-        width: 100%;
+        width: $full;
       }
     }
 
     &__form-additional {
       div:last-of-type {
-        width: 100%;
-        margin-top: 10px;
+        width: $full;
+        margin-top: 1rem;
 
         select {
-          width: 100%;
+          width: $full;
         }
       }
     }

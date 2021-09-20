@@ -12,12 +12,10 @@ html{
 }
 
 body{
-    background-color: #f8dcdc;
+    background-color: $color-dark-white;
     box-sizing: border-box;
 }
 
 .app{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include createFlex(flex, center, center);
 }

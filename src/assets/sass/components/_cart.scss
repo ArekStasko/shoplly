@@ -1,93 +1,79 @@
 .cart {
   position: fixed;
-  right: 50px;
-  top: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  right: 5rem;
+  top: 25rem;
+  @include createFlex(flex, center, center, column);
 
   &__icon {
     position: absolute;
     top: 0;
     right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include createFlex(flex, center, center, column);
     cursor: pointer;
-    border-radius: 60px;
-    background-color: #6c63ff;
-    color: #ffff;
-    width: 70px;
-    height: 70px;
-    font-size: 30px;
+    border-radius: 6rem;
+    background-color: $color-dark-blue;
+    color: $color-white;
+    width: 7rem;
+    height: 7rem;
+    font-size: 3rem;
   }
 
   &__count {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include createFlex(flex, center, center);
     position: absolute;
     top: -5px;
     right: -5px;
-    background-color: #ff0f0fde;
-    width: 25px;
-    height: 25px;
-    border-radius: 30px;
-    font-size: 14px;
+    background-color: $color-red-alert;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 3rem;
+    font-size: 1.4rem;
   }
 
   &__elements {
-    margin-top: 70px;
-    color: #6c63ff;
-    width: 250px;
-    padding: 10px;
-    border: 1px solid #e0dbdb;
+    margin-top: 7rem;
+    color: $color-dark-blue;
+    width: 25rem;
+    padding: 1rem;
+    border: 1px solid $color-light-gray;
     border-radius: 6px;
-    background-color: #f5f1f1;
+    background-color: $color-light-gray;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 
   &__no-items {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: $full;
+    @include createFlex(flex, center, center);
     font-weight: 500;
-    font-size: 20px;
+    font-size: 2rem;
   }
 
   &__element {
-    width: 100%;
+    width: $full;
     margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 15px;
+    @include createFlex(flex, space-between, center);
+    font-size: 1.5rem;
 
     img {
-      width: 30px;
-      height: 30px;
+      width: 3rem;
+      height: 3rem;
       border-radius: 5px;
     }
 
     button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include createFlex(flex, center, center);
       border: none;
       border-radius: 5px;
       cursor: pointer;
       background-color: transparent;
-      width: 20px;
-      height: 20px;
+      width: 2rem;
+      height: 2rem;
     }
   }
 
   &__element-link {
-    width: 40%;
+    width: $medium-40;
     text-decoration: none;
     overflow: hidden;
     white-space: nowrap;
